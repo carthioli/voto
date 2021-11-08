@@ -1,29 +1,46 @@
 <?php
-    session_start();
+  session_start();
 
-    
-
-    $candidato1 = 1;
-    if(isset($_POST['nomeeleitor'])){
+  if ( isset($_POST['nomeeleitor'] ) ) {
+    if( !is_null($_POST['nomeeleitor'])){
       $nomeeleitor = $_POST['nomeeleitor'];
-    }  
-    if(isset($_POST['branco'])){
-      $voto = ("branco");
-    }
-    if(isset($_POST['naovotar'])){
-      $voto = ("naovotou");
-    }
-    if(isset($_POST['primeirocandidato'])){
-      $voto = ("candidato 1");
-    }
-    if(isset($_POST['segundocandidato'])){
-      $voto = ("candidato 2");
-    }
-    if(isset($_POST['terceirocandidato'])){
-      $voto = ("candidato 3");
-    }
-    $_SESSION['voto'][] = $voto;
-     
+      if(isset($_POST['branco'])){
+        $branco =  array('branco' => 'candidatoum', 
+                         'eleitor' => $nomeeleitor);
+        $_SESSION['branco'][] = $branco;
+      }
+      if(isset($_POST['naovotar'])){
+        $naovotar =  array('naovotou' => 'candidatoum', 
+                           'eleitor' => $nomeeleitor);
+        $_SESSION['naovotar'][] = $naovotar;
+      }
+      if( isset($_POST['primeirocandidato'] ) ) {
+        $candidatoum = array('candidato' => 'candidatoum', 
+                             'eleitor' => $nomeeleitor);
+        $_SESSION['primeiro'][] = $candidatoum;
+        $verificaum = $_SESSION['primeiro'];
+        foreach ( $verificaum as $posicao){
+          if ( $posicao['eleitor'] === "Thiago"){
+            print("Você já votou!");
+          }else{
+            print("Voto realizado com SUCESSO!");
+          }
+          
+        }
+      }
+      if(isset($_POST['segundocandidato'])){
+        $candidatodois =  array('candidato' => 'candidatoum', 
+                                'eleitor' => $nomeeleitor);
+        $_SESSION['segundo'][] = $candidatodois;
+      }
+      if(isset($_POST['terceirocandidato'])){
+        $candidatotres =  array('candidato' => 'candidatoum', 
+                                'eleitor' => $nomeeleitor);
+        $_SESSION['terceiro'][] = $candidatotres;
+      }
+    } 
+  } 
+  
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -46,7 +63,6 @@
   }
   .g1 {
     grid-area: g1;
-    
   }
   .g2 {
     grid-area: g2;
@@ -54,7 +70,6 @@
   .g3 {
     grid-area: g3;
   }
-
   </style>  
 </head>
 <body>
@@ -82,20 +97,21 @@
                   </div>                
                   <div class="modal-body">
                   <form method="POST" action="index.php">
-                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                
+                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="primeirocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
                       <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
-                    </form>  
+                      </form> 
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="grid-item g2 mr-2 bg-secondary rounded h-50">   
           <div class="d-flex justify-content-center h-50">
             <img type="image" src="img/candidato2.jpg" width="120px" height="120px" class="p-1 mt-3 bg-info rounded-circle">
@@ -112,7 +128,7 @@
                   </div>                
                   <div class="modal-body">
                   <form method="POST" action="index.php">
-                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="segundocandidato">
@@ -125,7 +141,6 @@
             </div>
           </div>
         </div>
-
         <div class="grid-item g3 bg-secondary rounded h-50">
           <div class="d-flex justify-content-center h-50">
             <img type="image" src="img/candidato3.jpg" width="120px" height="120px" class="p-1 mt-3 bg-info rounded-circle">
@@ -142,7 +157,7 @@
                   </div>                
                   <div class="modal-body">
                   <form method="POST" action="index.php">
-                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="terceirocandidato">
@@ -158,13 +173,48 @@
   </div>  
   <div class="container bg-secondary p-3 border rounded col-3">
     <div class="botaoform d-flex justify-content-center">
-      <form method="POST" action="index.php">    
-        <button class="btn btn-light border ml-2 mr-2" name="branco">BRANCO</button> 
-        <button class="btn btn-danger ml-2" name="naovotar">NÃO VOTAR</button>   
-      </form>  
+        <button type="button" class="btn btn-light border ml-2 mr-2" data-toggle="modal" data-target="#branco">BRANCO</button> 
+        <div class="modal fade" id="branco">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content"> 
+              <div class="modal-header">
+                <h4 class="modal-title">INFORME O ELEITOR: </h4>      
+              </div>  
+              <div class="modal-body">
+                <form method="POST" action="index.php">
+                  <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>  
+                </div>
+                <div class="modal-footer">  
+                  <input type="hidden" name="branco">
+                  <button type="submit" class="btn btn-success">FINALIZAR</button>
+                  <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
+                </form>  
+              </div>  
+            </div>  
+          </div>
+        </div>    
+        <button type="button" class="btn btn-danger ml-2" data-toggle="modal" data-target="#naovotar">NÃO VOTAR</button> 
+        <div class="modal fade" id="naovotar">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">INFORME O ELEITOR: </h4>
+              </div>  
+              <div class="modal-body">
+                <form method="POST" action="index.php">
+                  <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
+              </div>  
+              <div class="modal-footer">
+                <input type="hidden" name="naovotar">
+                <button type="submit" class="btn btn-success">FINALIZAR</button>
+                <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+              </form>  
+              </div>
+            </div>  
+          </div>   
+        </div>   
     </div>  
-  </div>
-       
+  </div>    
   </main>  
   <footer>
   </footer>

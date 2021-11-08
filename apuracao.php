@@ -1,3 +1,66 @@
+<?php
+  session_start();
+
+    $totalbranco = 0; 
+    $totalnao = 0;
+    $totalum = 0;
+    $totaldois = 0;
+    $totaltres = 0;    
+    $totalvoto = 0;
+    $resultado = "INDEFIRIDO";
+    $candidatovoto = "INDEFIRIDO";
+
+    if ( isset( $_SESSION['primeiro'] ) ) {
+      $candidatoum = $_SESSION['primeiro'];
+      foreach ( $candidatoum as $eleitorum ){
+        $totalum = count( $candidatoum );
+      }  
+    }
+    if ( isset( $_SESSION['segundo'] ) ) {
+      $candidatodois = $_SESSION['segundo'];
+      foreach ( $candidatodois as $eleitordois ){
+        $totaldois = count( $candidatodois );
+      } 
+    }
+    if ( isset( $_SESSION['terceiro'] ) ) {
+      $candidatotres = $_SESSION['terceiro'];
+      foreach ( $candidatotres as $eleitortres ){
+        $totaltres = count( $candidatotres );
+      } 
+    }
+    if ( isset( $_SESSION['branco'] ) ) {
+      $branco = $_SESSION['branco'];
+      foreach ($branco as $eleitorbranco){
+        $totalbranco = count($branco);
+      }
+    }
+    if ( isset( $_SESSION['naovotar'] ) ) {
+      $naovotar = $_SESSION['naovotar'];
+      foreach ($naovotar as $eleitornao){
+        $totalnao = count($naovotar);  
+      }  
+    }  
+    if ($totalum > $totaldois && $totalum > $totaltres){
+      $resultado = "Candidato 1";
+      $candidatovoto = $totalum;
+    }
+    if ($totaldois > $totalum && $totaldois > $totaltres){
+      $resultado = "Candidato 2";
+      $candidatovoto = $totaldois;
+    }
+    if ($totaltres > $totalum && $totalum > $totaldois){
+      $resultado = "Candidato 3";
+      $candidatovoto = $totaltres;
+    }
+    $totalvoto = ($totalbranco + $totalnao + $totalum + $totaldois + $totaltres);
+    
+    if ( isset($_POST['recomecar'] ) ) {
+      session_destroy();
+      echo "<meta HTTP-EQUIV ='refresh' CONTENT='0'>";
+    }
+    
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,9 +73,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link hel="stylesheet" href="css/style.css">
-  <title>Votação</title>
+  <title>Apuração</title>
   <style>
-
+    
+    .container{
+      height: 50px
+    }
+    .apura{
+      height: 455px;
+    }
+    .candidato{
+      height: 200px
+    }
+    .outro{
+      height: 115px
+    }
   </style>  
 </head>
 <body>
@@ -22,12 +97,51 @@
   <div class="container-fluid bg-secondary mb-5">
     <h1 class="d-flex justify-content-center text-body">APURAÇÃO</h1>
   </div>  
-  <div class="container bg-secondary p-5 rounded">
-    <div class="">
-
+  <div class="container bg-secondary p-1 rounded col-6 apura">
+    <div class="container bg-dark rounded-top mt-2 col-6">
+      <h3 class="text-center mt-3 text-success">MAIS VOTADO!</h3>
     </div>  
-  </div> 
-       
+    <div class="container bg-dark col-6 candidato">
+      <div class="d-flex justify-content-center h-50">
+        <img width="70px" height="70px" class="p-1 mt-3 bg-info rounded-circle">
+      </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-2">  
+              <h6 class="text-left text-white ">NOME DO CANDIDATO:</h6><br>
+              <h6 class="text-left text-white ">QUANTIDADE DE VOTOS:</h6>
+            </div>
+            <div class="col-4 mt-1">
+              <p class="text-white mt-1 nomeapuracao"><?php echo $resultado; ?></p><br>
+              <p class="text-white mt-1 qntvoto"><?php echo $candidatovoto; ?></p>
+            </div>  
+          </div>
+        </div>
+    </div>
+    <div class="container col-6 mt-3 rounded bg-dark outro">
+      <p class="text-center text-danger">OUTROS VOTOS:</p>
+        <div class="container mt-3">
+          <div class="row">
+            <div class="col-2 ">  
+              <h6 class="text-left text-white ">VOTOS BRANCO:</h6>
+              <h6 class="text-left text-white mt-4">NÃO VOTOU:</h6>
+              <h6 class="text-left text-white mt-4">TOTAL DE VOTOS:</h6>
+            </div>
+            <div class="col-4 mt-1">
+              <p class="text-white bncvoto"><?php echo $totalbranco; ?></p>
+              <p class="text-white"><?php echo $totalnao; ?></p>
+              <p class="text-white"><?php echo $totalvoto;?></p>
+            </div>  
+          </div>
+        </div>
+    </div>  
+    <div class="container d-flex justify-content-center col-6 mt-3">
+      <form method="POST" action="apuracao.php">
+          <button type="submit" class="btn btn-success text-body" name="atualizar">ATUALIZAR</button>
+          <button type="submit" class="btn btn-danger text-body" name="recomecar">RECOMEÇAR</button>
+      </form>
+    </div>  
+  </div>  
   </main>  
   <footer>
   </footer>
