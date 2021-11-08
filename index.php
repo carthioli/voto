@@ -1,47 +1,3 @@
-<?php
-  session_start();
-
-  if ( isset($_POST['nomeeleitor'] ) ) {
-    if( !is_null($_POST['nomeeleitor'])){
-      $nomeeleitor = $_POST['nomeeleitor'];
-      if(isset($_POST['branco'])){
-        $branco =  array('branco' => 'candidatoum', 
-                         'eleitor' => $nomeeleitor);
-        $_SESSION['branco'][] = $branco;
-      }
-      if(isset($_POST['naovotar'])){
-        $naovotar =  array('naovotou' => 'candidatoum', 
-                           'eleitor' => $nomeeleitor);
-        $_SESSION['naovotar'][] = $naovotar;
-      }
-      if( isset($_POST['primeirocandidato'] ) ) {
-        $candidatoum = array('candidato' => 'candidatoum', 
-                             'eleitor' => $nomeeleitor);
-        $_SESSION['primeiro'][] = $candidatoum;
-        $verificaum = $_SESSION['primeiro'];
-        foreach ( $verificaum as $posicao){
-          if ( $posicao['eleitor'] === "Thiago"){
-            print("Você já votou!");
-          }else{
-            print("Voto realizado com SUCESSO!");
-          }
-          
-        }
-      }
-      if(isset($_POST['segundocandidato'])){
-        $candidatodois =  array('candidato' => 'candidatoum', 
-                                'eleitor' => $nomeeleitor);
-        $_SESSION['segundo'][] = $candidatodois;
-      }
-      if(isset($_POST['terceirocandidato'])){
-        $candidatotres =  array('candidato' => 'candidatoum', 
-                                'eleitor' => $nomeeleitor);
-        $_SESSION['terceiro'][] = $candidatotres;
-      }
-    } 
-  } 
-  
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -96,14 +52,14 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>                
                   <div class="modal-body">
-                  <form method="POST" action="index.php">
+                  <form method="POST" action="recebe.php">
                 
                     <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="primeirocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
-                      <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+                      <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
                       </form> 
                     </form>
                   </div>
@@ -127,13 +83,13 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>                
                   <div class="modal-body">
-                  <form method="POST" action="index.php">
+                  <form method="POST" action="recebe.php">
                     <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="segundocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
-                      <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+                      <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
                     </form>  
                   </div>
                 </div>
@@ -156,13 +112,13 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>                
                   <div class="modal-body">
-                  <form method="POST" action="index.php">
+                  <form method="POST" action="recebe.php">
                     <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="terceirocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
-                      <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
+                      <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
                     </form>  
                   </div>
                 </div>
@@ -181,13 +137,13 @@
                 <h4 class="modal-title">INFORME O ELEITOR: </h4>      
               </div>  
               <div class="modal-body">
-                <form method="POST" action="index.php">
+                <form method="POST" action="recebe.php">
                   <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>  
                 </div>
                 <div class="modal-footer">  
                   <input type="hidden" name="branco">
                   <button type="submit" class="btn btn-success">FINALIZAR</button>
-                  <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
+                  <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
                 </form>  
               </div>  
             </div>  
@@ -201,13 +157,13 @@
                 <h4 class="modal-title">INFORME O ELEITOR: </h4>
               </div>  
               <div class="modal-body">
-                <form method="POST" action="index.php">
+                <form method="POST" action="recebe.php">
                   <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
               </div>  
               <div class="modal-footer">
                 <input type="hidden" name="naovotar">
                 <button type="submit" class="btn btn-success">FINALIZAR</button>
-                <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+                <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
               </form>  
               </div>
             </div>  
