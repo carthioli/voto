@@ -13,6 +13,7 @@
         $naovotar =  array('naovotou' => 'candidatoum', 
                            'eleitor' => $nomeeleitor);
         $_SESSION['naovotar'][] = $naovotar;
+
       }
       if( isset($_POST['primeirocandidato'] ) ) {
         $verificaum = $_SESSION['primeiro'];
