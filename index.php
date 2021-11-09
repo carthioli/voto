@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,24 +12,23 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <title>Votação</title>
-  <style>
-
-  .grid {
-  display: grid;
-  grid-template-columns: 6fr 6fr 6fr;
-  grid-template-areas: "g1 g2 g3";
-  height: 550px;
-  }
-  .g1 {
-    grid-area: g1;
-  }
-  .g2 {
-    grid-area: g2;
-  }
-  .g3 {
-    grid-area: g3;
-  }
-  </style>  
+    <style>
+      .grid {
+      display: grid;
+      grid-template-columns: 6fr 6fr 6fr;
+      grid-template-areas: "g1 g2 g3";
+      height: 550px;
+      }
+      .g1 {
+        grid-area: g1;
+      }
+      .g2 {
+        grid-area: g2;
+      }
+      .g3 {
+        grid-area: g3;
+      }
+    </style>  
 </head>
 <body>
   <header>
@@ -34,6 +36,13 @@
   <main>
   <div class="container-fluid bg-secondary mb-5">
     <h1 class="d-flex justify-content-center text-body">REALIZE SEU VOTO</h1>
+  </div>  
+  <div class="container rounded d-flex justify-content-center col-2 bg-light text-success">
+      <p class="mt-2"><?php 
+      if (isset($_SESSION['mensagem'] ) ){
+          echo($_SESSION['mensagem']);} 
+         ?>
+      </p>
   </div>  
   <div class="container-fluid mt-2">
       <div class="grid">
