@@ -17,11 +17,19 @@
         header("location:index.php");
       }
       if( isset($_POST['primeirocandidato'] ) ) {
-       
         $candidatoum = array('candidato' => 'candidatoum', 
-                             'eleitor' => $nomeeleitor);        
-        $_SESSION['primeiro'][] = $candidatoum;
-        header("location:index.php");
+                             'eleitor' => $nomeeleitor); 
+                             $_SESSION['primeiro'][] = $candidatoum;
+        if ( isset( $_SESSION['primeiro'] ) ) {
+          $verificaum = $_SESSION['primeiro'];
+          foreach ( $verificaum as $posicao ) {
+           
+              $verificaprimeiro = $posicao['eleitor'];
+              $verifica = array('nomeeleitor' => $verificaprimeiro);
+              $_SESSION['verificaprimeiro'][] = $verifica; 
+              
+          }
+        }
       }
       if(isset($_POST['segundocandidato'])){
         $candidatodois =  array('candidato' => 'candidatodois', 
@@ -37,4 +45,6 @@
       }
     } 
   } 
+  
+
 ?>

@@ -59,7 +59,7 @@
                   <div class="modal-footer">
                       <input type="hidden" name="primeirocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
-                      <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+                      <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
                       </form> 
                     </form>
                   </div>
@@ -89,7 +89,7 @@
                   <div class="modal-footer">
                       <input type="hidden" name="segundocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
-                      <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+                      <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
                     </form>  
                   </div>
                 </div>
@@ -118,7 +118,7 @@
                   <div class="modal-footer">
                       <input type="hidden" name="terceirocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
-                      <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
+                      <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
                     </form>  
                   </div>
                 </div>
@@ -143,7 +143,7 @@
                 <div class="modal-footer">  
                   <input type="hidden" name="branco">
                   <button type="submit" class="btn btn-success">FINALIZAR</button>
-                  <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
+                  <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
                 </form>  
               </div>  
             </div>  
@@ -163,7 +163,7 @@
               <div class="modal-footer">
                 <input type="hidden" name="naovotar">
                 <button type="submit" class="btn btn-success">FINALIZAR</button>
-                <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+                <a class="text-decoration-none text-body" href="index.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
               </form>  
               </div>
             </div>  
