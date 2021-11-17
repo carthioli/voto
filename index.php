@@ -1,5 +1,5 @@
 <?php
-session_start();
+  include "mensagem.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,12 +37,19 @@ session_start();
   <div class="container-fluid bg-secondary mb-5">
     <h1 class="d-flex justify-content-center text-body">REALIZE SEU VOTO</h1>
   </div>  
-  <div class="container rounded d-flex justify-content-center col-2 bg-light text-success">
-      <p class="mt-2"><?php 
-      if (isset($_SESSION['mensagem'] ) ){
-          echo($_SESSION['mensagem']);} 
-         ?>
-      </p>
+  <div class="container rounded d-flex justify-content-center col-3 bg-light text-success">
+      <p class="text-success">
+      <?php 
+        if ( $_GET ){
+          if( isset( $_GET['erro'] ) ) {
+            $mensagem_erro = mensagens( $_GET['erro'] );
+            echo "{$mensagem_erro}";
+          }
+          if( isset($_GET['confirma'] ) ) {
+            echo "Seu voto foi realizado com SUCESSO!";
+          }
+        }    
+      ?></p>
   </div>  
   <div class="container-fluid mt-2">
       <div class="grid">
@@ -62,11 +69,10 @@ session_start();
                   </div>                
                   <div class="modal-body">
                   <form method="POST" action="recebe.php">
-                
-                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
+                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
                   </div>
                   <div class="modal-footer">
-                      <input type="hidden" name="primeirocandidato">
+                      <input type="hidden" name="voto" value="primeirocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
                       <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
                       </form> 
@@ -93,10 +99,10 @@ session_start();
                   </div>                
                   <div class="modal-body">
                   <form method="POST" action="recebe.php">
-                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
+                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
                   </div>
                   <div class="modal-footer">
-                      <input type="hidden" name="segundocandidato">
+                      <input type="hidden" name="voto" value="segundocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
                       <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
                     </form>  
@@ -122,10 +128,10 @@ session_start();
                   </div>                
                   <div class="modal-body">
                   <form method="POST" action="recebe.php">
-                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
+                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
                   </div>
                   <div class="modal-footer">
-                      <input type="hidden" name="terceirocandidato">
+                      <input type="hidden" name="voto" value="terceirocandidato">
                       <button type="submit" class="btn btn-success">FINALIZAR</button>
                       <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
                     </form>  
@@ -147,10 +153,10 @@ session_start();
               </div>  
               <div class="modal-body">
                 <form method="POST" action="recebe.php">
-                  <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>  
+                  <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">  
                 </div>
                 <div class="modal-footer">  
-                  <input type="hidden" name="branco">
+                  <input type="hidden" name="voto" value="branco">
                   <button type="submit" class="btn btn-success">FINALIZAR</button>
                   <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a> 
                 </form>  
@@ -167,10 +173,10 @@ session_start();
               </div>  
               <div class="modal-body">
                 <form method="POST" action="recebe.php">
-                  <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor" required>
+                  <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
               </div>  
               <div class="modal-footer">
-                <input type="hidden" name="naovotar">
+                <input type="hidden" name="voto" value="naovotar">
                 <button type="submit" class="btn btn-success">FINALIZAR</button>
                 <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
               </form>  
