@@ -1,0 +1,11 @@
+SELECT nome, COUNT(id_usu) AS total
+FROM usuario 
+INNER JOIN pedidos ON usuario.id = pedidos.id_usu
+GROUP BY nome, id_usu
+ORDER BY 'total' DESC
+
+SELECT TOP (1) COUNT(id_usu) AS total2
+FROM dbo.pedidos
+GROUP BY id_usu
+
+select * from View_1 where total=(select * from View_2)

@@ -6,11 +6,9 @@
                             FROM candidato_voto as cv
                             JOIN candidato as ca on cv.id_candidato = ca.id
                             GROUP BY cv.id_candidato, ca.nome
-                            ORDER BY 1 DESC
-                            LIMIT 1             
-                            ;");
-      $querytotal=pg_query("SELECT count(id_candidato) 
-                            FROM candidato_voto;");
+                            ORDER BY 1 DESC           
+                            ;");       
+                                      
      $querynulo = pg_query("SELECT COUNT(cv.id_candidato), 
                                    ca.nome
                             FROM candidato_voto AS cv
@@ -23,10 +21,13 @@
                             JOIN candidato AS ca ON ca.id = cv.id_candidato
                             WHERE ca.nome = 'branco'
                             GROUP BY cv.id_candidato, ca.nome");
+      $querytotal=pg_query("SELECT count(id_candidato) 
+                            FROM candidato_voto;");       
+                                              
       $resultado = pg_fetch_assoc($query);
-      $totalvoto = pg_fetch_assoc($querytotal);
       $totalnulo = pg_fetch_assoc($querynulo);
-    $totalbranco = pg_fetch_assoc($querybranco);   
+    $totalbranco = pg_fetch_assoc($querybranco); 
+      $totalvoto = pg_fetch_assoc($querytotal);  
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -77,9 +78,9 @@
               <h6 class="text-left text-white ">QUANTIDADE DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white mt-1 nomeapuracao"><?php if ( isset($resultado) ){echo $resultado['nome'];}else{echo "INDEFINIDO";};?>
+              <p class="text-white mt-1 nomeapuracao"><?php if ( isset($resultado['nome']) ){echo $resultado['nome'];}else{echo "INDEFINIDO";};?>
                                                             </p><br>
-              <p class="text-white mt-1 qntvoto"><?php echo $resultado['qnt_voto'];?></p>
+              <p class="text-white mt-1 qntvoto"><?php if ( isset($resultado['nome']) ){echo $resultado['qnt_voto'];}else{echo "INDEFINIDO";};?></p>
             </div>  
           </div>
         </div>
@@ -94,9 +95,9 @@
               <h6 class="text-left text-white mt-4">TOTAL DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white bncvoto"><?php echo $totalbranco['count']; ?></p>
-              <p class="text-white"><?php echo $totalnulo['count']; ?></p>
-              <p class="text-white"><?php echo $totalvoto['count']; ?></p>
+              <p class="text-white bncvoto"><?php if ( isset($totalbranco['count']) ){echo $totalbranco['count'];}else{echo "0";}; ?></p>
+              <p class="text-white"><?php if ( isset($totalnulo['count']) ){echo $totalnulo['count'];}else{echo "0";}; ?></p>
+              <p class="text-white"><?php if ( isset($totalvoto['count']) ){echo $totalvoto['count'];}else{echo "0";}; ?></p>
             </div>  
           </div>
         </div>
