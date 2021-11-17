@@ -26,11 +26,35 @@
 
             $salvavoto = "INSERT INTO voto(id_eleitor) VALUES ($queryid[id])"; 
             pg_query($link, $salvavoto);
-
             
-            
+            if ( $voto == 'primeirocandidato' ) {
+              $salvaprimeiro = "INSERT INTO candidato_voto(id_voto, id_candidato)
+                                VALUES ($queryid[id], 1)";
+              pg_query($link, $salvaprimeiro);                  
+            }
+            if ( $voto == 'segundocandidato' ) {
+              $salvasegundo = "INSERT INTO candidato_voto(id_voto, id_candidato)
+                                VALUES ($queryid[id], 2)";
+              pg_query($link, $salvasegundo);                  
+            }
+            if ( $voto == 'terceirocandidato' ) {
+              $salvaterceiro = "INSERT INTO candidato_voto(id_voto, id_candidato)
+                                VALUES ($queryid[id], 3)";
+              pg_query($link, $salvaterceiro);                  
+            }
+            if ( $voto == 'branco' ) {
+              $branco = "INSERT INTO candidato_voto(id_voto, id_candidato)
+                                VALUES ($queryid[id], 4)";
+              pg_query($link, $branco);                  
+            }
+            if ( $voto == 'naovotar' ) {
+              $naovotar = "INSERT INTO candidato_voto(id_voto, id_candidato)
+                                VALUES ($queryid[id], 5)";
+              pg_query($link, $naovotar);                  
+            }
       }
     }  
+    header('location:index.php');
             
             /*$verificavoto = verificavoto( $eleitor );
 
