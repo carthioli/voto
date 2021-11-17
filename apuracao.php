@@ -77,7 +77,7 @@
               <h6 class="text-left text-white ">QUANTIDADE DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white mt-1 nomeapuracao"><?php echo $resultado['nome'];?>
+              <p class="text-white mt-1 nomeapuracao"><?php if ( isset($resultado) ){echo $resultado['nome'];}else{echo "INDEFINIDO";};?>
                                                             </p><br>
               <p class="text-white mt-1 qntvoto"><?php echo $resultado['qnt_voto'];?></p>
             </div>  
