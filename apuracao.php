@@ -1,65 +1,32 @@
 <?php
-  session_start();
+      include "conexao.php";
 
-    $totalbranco = 0; 
-    $totalnao = 0;
-    $totalum = 0;
-    $totaldois = 0;
-    $totaltres = 0;    
-    $totalvoto = 0;
-    $resultado = "INDEFIRIDO";
-    $candidatovoto = "INDEFIRIDO";
-
-    if ( isset( $_SESSION['primeiro'] ) ) {
-      $candidatoum = $_SESSION['primeiro'];
-      foreach ( $candidatoum as $eleitorum ){
-        $totalum = count( $candidatoum );
-      }  
-    }
-    if ( isset( $_SESSION['segundo'] ) ) {
-      $candidatodois = $_SESSION['segundo'];
-      foreach ( $candidatodois as $eleitordois ){
-        $totaldois = count( $candidatodois );
-      } 
-    }
-    if ( isset( $_SESSION['terceiro'] ) ) {
-      $candidatotres = $_SESSION['terceiro'];
-      foreach ( $candidatotres as $eleitortres ){
-        $totaltres = count( $candidatotres );
-      } 
-    }
-    if ( isset( $_SESSION['branco'] ) ) {
-      $branco = $_SESSION['branco'];
-      foreach ($branco as $eleitorbranco){
-        $totalbranco = count($branco);
-      }
-    }
-    if ( isset( $_SESSION['naovotar'] ) ) {
-      $naovotar = $_SESSION['naovotar'];
-      foreach ($naovotar as $eleitornao){
-        $totalnao = count($naovotar);  
-      }  
-    }  
-    if ($totalum > $totaldois && $totalum > $totaltres){
-      $resultado = "Candidato 1";
-      $candidatovoto = $totalum;
-    }
-    if ($totaldois > $totalum && $totaldois > $totaltres){
-      $resultado = "Candidato 2";
-      $candidatovoto = $totaldois;
-    }
-    if ($totaltres > $totalum && $totalum > $totaldois){
-      $resultado = "Candidato 3";
-      $candidatovoto = $totaltres;
-    }
-    $totalvoto = ($totalbranco + $totalnao + $totalum + $totaldois + $totaltres);
-    
-    if ( isset($_POST['recomecar'] ) ) {
-      session_destroy();
-      echo "<meta HTTP-EQUIV ='refresh' CONTENT='0'>";
-    }
-    
-
+           $query=pg_query("SELECT count(cv.id_candidato) as qnt_voto,
+                                   ca.nome
+                            FROM candidato_voto as cv
+                            JOIN candidato as ca on cv.id_candidato = ca.id
+                            GROUP BY cv.id_candidato, ca.nome
+                            ORDER BY 1 DESC
+                            LIMIT 1             
+                            ;");
+      $querytotal=pg_query("SELECT count(id_candidato) 
+                            FROM candidato_voto;");
+     $querynulo = pg_query("SELECT COUNT(cv.id_candidato), 
+                                   ca.nome
+                            FROM candidato_voto AS cv
+                            JOIN candidato AS ca ON ca.id = cv.id_candidato
+                            WHERE ca.nome = 'nulo'
+                            GROUP BY cv.id_candidato, ca.nome");
+     $querybranco=pg_query("SELECT COUNT(cv.id_candidato), 
+                                   ca.nome
+                            FROM candidato_voto AS cv
+                            JOIN candidato AS ca ON ca.id = cv.id_candidato
+                            WHERE ca.nome = 'branco'
+                            GROUP BY cv.id_candidato, ca.nome");
+      $resultado = pg_fetch_assoc($query);
+      $totalvoto = pg_fetch_assoc($querytotal);
+      $totalnulo = pg_fetch_assoc($querynulo);
+    $totalbranco = pg_fetch_assoc($querybranco);   
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,10 +39,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link hel="stylesheet" href="css/style.css">
-  <title>Apuração</title>
+    <title>Apuração</title>
   <style>
-    
     .container{
       height: 50px
     }
@@ -112,8 +77,9 @@
               <h6 class="text-left text-white ">QUANTIDADE DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white mt-1 nomeapuracao"><?php echo $resultado; ?></p><br>
-              <p class="text-white mt-1 qntvoto"><?php echo $candidatovoto; ?></p>
+              <p class="text-white mt-1 nomeapuracao"><?php echo $resultado['nome'];?>
+                                                            </p><br>
+              <p class="text-white mt-1 qntvoto"><?php echo $resultado['qnt_voto'];?></p>
             </div>  
           </div>
         </div>
@@ -128,9 +94,9 @@
               <h6 class="text-left text-white mt-4">TOTAL DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white bncvoto"><?php echo $totalbranco; ?></p>
-              <p class="text-white"><?php echo $totalnao; ?></p>
-              <p class="text-white"><?php echo $totalvoto;?></p>
+              <p class="text-white bncvoto"><?php echo $totalbranco['count']; ?></p>
+              <p class="text-white"><?php echo $totalnulo['count']; ?></p>
+              <p class="text-white"><?php echo $totalvoto['count']; ?></p>
             </div>  
           </div>
         </div>
