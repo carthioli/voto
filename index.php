@@ -70,6 +70,7 @@
                   <div class="modal-body">
                   <form method="POST" action="recebe.php">
                     <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                    <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="voto" value="primeirocandidato">
@@ -100,6 +101,7 @@
                   <div class="modal-body">
                   <form method="POST" action="recebe.php">
                     <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                    <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="voto" value="segundocandidato">
@@ -129,6 +131,7 @@
                   <div class="modal-body">
                   <form method="POST" action="recebe.php">
                     <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                    <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" name="voto" value="terceirocandidato">
@@ -154,6 +157,7 @@
               <div class="modal-body">
                 <form method="POST" action="recebe.php">
                   <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">  
+                  <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
                 </div>
                 <div class="modal-footer">  
                   <input type="hidden" name="voto" value="branco">
@@ -174,6 +178,7 @@
               <div class="modal-body">
                 <form method="POST" action="recebe.php">
                   <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                  <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
               </div>  
               <div class="modal-footer">
                 <input type="hidden" name="voto" value="naovotar">

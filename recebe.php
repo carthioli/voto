@@ -1,8 +1,8 @@
 <?php 
 
-    session_start();
+    include "conexao.php";
 
-    include "verifica_voto.php";
+    /*include "verifica_voto.php";*/
 
     if( isset( $_POST ) && !empty( $_POST['voto'] ) ) {
       
@@ -12,8 +12,15 @@
 
             $voto         = $_POST['voto'];
             $eleitor      = $_POST['nomeeleitor'];
+            $titulo       = $_POST['titulo'];
 
-            $verificavoto = verificavoto( $eleitor );
+            $sql = "INSERT INTO eleitor(nome, documento) VALUES ('{$eleitor}', '{$titulo}')";
+            pg_query($link, $sql);
+      }
+    }  
+    header('location:index.php');     
+
+            /*$verificavoto = verificavoto( $eleitor );
 
             if ( ! $verificavoto ) {
               $_SESSION['voto'][ $voto ][] = $eleitor;
@@ -28,6 +35,8 @@
     }
     else{
         header('location:index.php?erro=1');
-    }
+    }*/
+
+
     
   
