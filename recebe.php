@@ -13,13 +13,25 @@
             $voto         = $_POST['voto'];
             $eleitor      = $_POST['nomeeleitor'];
             $titulo       = $_POST['titulo'];
+            
+            $salvaeleitor = "INSERT INTO eleitor(nome, documento) VALUES ('{$eleitor}', '{$titulo}')";
+            pg_query($link, $salvaeleitor);
 
-            $sql = "INSERT INTO eleitor(nome, documento) VALUES ('{$eleitor}', '{$titulo}')";
-            pg_query($link, $sql);
+            $query = pg_query("SELECT max(e.id), e.id, e.nome
+                               FROM eleitor as e
+                               GROUP BY e.id, e.nome
+                               ORDER BY 1 DESC
+                               LIMIT 1");               
+            $queryid   = pg_fetch_assoc($query);
+
+            $salvavoto = "INSERT INTO voto(id_eleitor) VALUES ($queryid[id])"; 
+            pg_query($link, $salvavoto);
+
+            
+            
       }
     }  
-    header('location:index.php');     
-
+            
             /*$verificavoto = verificavoto( $eleitor );
 
             if ( ! $verificavoto ) {

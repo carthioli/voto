@@ -1,19 +1,11 @@
 <?php
+  include "conexao.php";
 
-  function verificavoto( $intecao ){
+  function verificavoto( $intesao ){
     
-    $lista = $_SESSION['voto'];
-
-    $votei = false;
-
-    foreach ( $lista as $chave => $tipovoto ) {
-
-      foreach ( $lista[ $chave ] as $voto ){
-        if ( $voto == $intecao ){
-          $votei = ["votou" => true];
-          break;
-        }
-      }
-    }
-    return $votei;
   }
+  $query = pg_query("SELECT  e.id, e.nome
+                               FROM eleitor as e
+                               GROUP BY e.id, e.nome");               
+            $queryid   = pg_fetch_assoc($query);
+            echo $queryid['nome'];
