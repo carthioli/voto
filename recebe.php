@@ -1,61 +1,33 @@
-<?php
-session_start();
+<?php 
 
-  if ( isset( $_POST['nomeeleitor'] ) ) {
-    if ( !is_null( $_POST['nomeeleitor'] ) ){
-      $nomeeleitor = $_POST['nomeeleitor'];
+    session_start();
 
-      if ( isset( $_POST['primeirocandidato'] ) ) {
-        $primeiro = array('candidato' => "candidatoum",
-                          'eleitor' => $nomeeleitor );
-        $_SESSION['verifica'][] = $nomeeleitor;  
-        $verifica = $_SESSION['verifica']; 
-        
-        foreach ( $verifica as $eleitor ){
-          if ( $nomeeleitor == $eleitor ){
-            $mensagem = ("Você já votou!");
-          } else {
-            $_SESSION['primeiro'][] = $primeiro;
-              $mensagem = ("Voto realizado com SUCESSO!");
-          }
-        } 
-      }
-    
-      if ( isset( $_POST['segundocandidato'] ) ) {
-        $segundo = array('candidato' => "candidatodois",
-                          'eleitor' => $nomeeleitor );
-        $_SESSION['verifica'][] = $nomeeleitor;  
-        $verifica = $_SESSION['verifica'];         
-        $_SESSION['segundo'][] = $segundo;  
-      }
+    include "verifica_voto.php";
 
-      if ( isset( $_POST['terceirocandidato'] ) ) {
-        $terceiro = array('candidato' => "candidatotres",
-                          'eleitor' => $nomeeleitor );
-        $_SESSION['verifica'][] = $nomeeleitor;  
-        $verifica = $_SESSION['verifica'];         
-        $_SESSION['terceiro'][] = $terceiro;  
-      }
+    if( isset( $_POST ) && !empty( $_POST['voto'] ) ) {
+      
+      if ( !empty( $_POST['nomeeleitor'] ) &&
+           is_string( $_POST['nomeeleitor']) &&
+           !is_numeric( $_POST['nomeeleitor'] ) ){
 
-      if ( isset( $_POST['branco'] ) ) {
-        $branco = array('voto' => "branco",
-                        'eleitor' => $nomeeleitor );
-        $_SESSION['verifica'][] = $nomeeleitor;  
-        $verifica = $_SESSION['verifica'];         
-        $_SESSION['branco'][] = $branco;  
-      }
+            $voto         = $_POST['voto'];
+            $eleitor      = $_POST['nomeeleitor'];
 
-      if ( isset( $_POST['naovotar'] ) ) {
-        $naovotar = array('voto' => "naovotou",
-                          'eleitor' => $nomeeleitor );
-        $_SESSION['verifica'][] = $nomeeleitor;  
-        $verifica = $_SESSION['verifica'];         
-        $_SESSION['naovotar'][] = $naovotar;  
+            $verificavoto = verificavoto( $eleitor );
+
+            if ( ! $verificavoto ) {
+              $_SESSION['voto'][ $voto ][] = $eleitor;
+              header('location:index.php?confirma=1');
+            } else {
+              header('location:index.php?erro=3');
+            }
       }
+      else {
+           header('location:index.php?erro=2');
+      } 
+    }
+    else{
+        header('location:index.php?erro=1');
     }
     
-    
-  $_SESSION['mensagem'] = $mensagem;
-  }  
-header('location: index.php');
-?>
+  
