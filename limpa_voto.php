@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    
-        $_SESSION['voto'] = null;
+include "conexao.php";
+
         
-  header('location: apuracao.php');
+        
+ 

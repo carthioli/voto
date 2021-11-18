@@ -1,33 +1,26 @@
 <?php
       include "conexao.php";
 
-           $query=pg_query("SELECT count(cv.id_candidato) as qnt_voto,
-                                   ca.nome
-                            FROM candidato_voto as cv
-                            JOIN candidato as ca on cv.id_candidato = ca.id
-                            GROUP BY cv.id_candidato, ca.nome
-                            ORDER BY 1 DESC           
-                            ;");       
-                                      
-     $querynulo = pg_query("SELECT COUNT(cv.id_candidato), 
-                                   ca.nome
-                            FROM candidato_voto AS cv
-                            JOIN candidato AS ca ON ca.id = cv.id_candidato
-                            WHERE ca.nome = 'nulo'
-                            GROUP BY cv.id_candidato, ca.nome");
-     $querybranco=pg_query("SELECT COUNT(cv.id_candidato), 
-                                   ca.nome
-                            FROM candidato_voto AS cv
-                            JOIN candidato AS ca ON ca.id = cv.id_candidato
-                            WHERE ca.nome = 'branco'
-                            GROUP BY cv.id_candidato, ca.nome");
+         $query = pg_query("SELECT max(total_votos), total_votos, id_candidato, nome
+                            FROM resultado 
+                            JOIN candidato on id = resultado.id_candidato
+                            GROUP BY total_votos, id_candidato, nome  
+                            order by 1 desc
+                          ");
+     $querybranco=pg_query("SELECT total_votos
+                            FROM resultado
+                            WHERE id_candidato = 4
+                          ");
+     $querynulo = pg_query("SELECT total_votos
+                            FROM resultado
+                            WHERE id_candidato = 5
+                          ");
       $querytotal=pg_query("SELECT count(id_candidato) 
                             FROM candidato_voto;");       
-                                              
-      $resultado = pg_fetch_assoc($query);
-      $totalnulo = pg_fetch_assoc($querynulo);
-    $totalbranco = pg_fetch_assoc($querybranco); 
-      $totalvoto = pg_fetch_assoc($querytotal);  
+      $resultado = pg_fetch_assoc($query); 
+    $totalbranco = pg_fetch_assoc($querybranco);
+      $totalnulo = pg_fetch_assoc($querynulo); 
+      $totalvoto = pg_fetch_assoc($querytotal);   
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -80,7 +73,7 @@
             <div class="col-4 mt-1">
               <p class="text-white mt-1 nomeapuracao"><?php if ( isset($resultado['nome']) ){echo $resultado['nome'];}else{echo "INDEFINIDO";};?>
                                                             </p><br>
-              <p class="text-white mt-1 qntvoto"><?php if ( isset($resultado['nome']) ){echo $resultado['qnt_voto'];}else{echo "INDEFINIDO";};?></p>
+              <p class="text-white mt-1 qntvoto"><?php if ( isset($resultado['total_votos']) ){echo $resultado['total_votos'];}else{echo "INDEFINIDO";};?></p>
             </div>  
           </div>
         </div>
@@ -95,8 +88,8 @@
               <h6 class="text-left text-white mt-4">TOTAL DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white bncvoto"><?php if ( isset($totalbranco['count']) ){echo $totalbranco['count'];}else{echo "0";}; ?></p>
-              <p class="text-white"><?php if ( isset($totalnulo['count']) ){echo $totalnulo['count'];}else{echo "0";}; ?></p>
+              <p class="text-white bncvoto"><?php if ( isset($totalbranco['total_votos']) ){echo $totalbranco['total_votos'];}else{echo "0";}; ?></p>
+              <p class="text-white"><?php if ( isset($totalnulo['total_votos']) ){echo $totalnulo['total_votos'];}else{echo "0";}; ?></p>
               <p class="text-white"><?php if ( isset($totalvoto['count']) ){echo $totalvoto['count'];}else{echo "0";}; ?></p>
             </div>  
           </div>

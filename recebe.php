@@ -1,9 +1,7 @@
 <?php 
-
     include "conexao.php";
 
     /*include "verifica_voto.php";*/
-
     if( isset( $_POST ) && !empty( $_POST['voto'] ) ) {
       
       if ( !empty( $_POST['nomeeleitor'] ) &&
@@ -50,29 +48,21 @@
             if ( $voto == 'naovotar' ) {
               $naovotar = "INSERT INTO candidato_voto(id_voto, id_candidato)
                                 VALUES ($queryid[id], 5)";
-              pg_query($link, $naovotar);                  
-            }
+              pg_query($link, $naovotar);              
+            }     
       }
     }  
-    header('location:index.php');
-            
-            /*$verificavoto = verificavoto( $eleitor );
-
-            if ( ! $verificavoto ) {
-              $_SESSION['voto'][ $voto ][] = $eleitor;
-              header('location:index.php?confirma=1');
-            } else {
-              header('location:index.php?erro=3');
-            }
-      }
-      else {
-           header('location:index.php?erro=2');
-      } 
-    }
-    else{
-        header('location:index.php?erro=1');
-    }*/
-
-
+   $queryd=pg_query("DELETE from resultado");
+    $query=pg_query("SELECT count(cv.id_candidato) as qnt_voto, cv.id_candidato,
+                     ca.nome
+                     FROM candidato_voto as cv
+                     JOIN candidato as ca on cv.id_candidato = ca.id
+                     GROUP BY cv.id_candidato, ca.nome
+                     ;");            
+    while( $resultado = pg_fetch_assoc($query) ){
+      $salvacount = "INSERT INTO resultado(id_candidato, total_votos)
+                     VALUES ($resultado[id_candidato],$resultado[qnt_voto])";
+      pg_query($link, $salvacount);  
+    }  
     
-  
+  header('location:index.php');
