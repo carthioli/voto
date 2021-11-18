@@ -17,10 +17,18 @@
                           ");
       $querytotal=pg_query("SELECT count(id_candidato) 
                             FROM candidato_voto;");       
+    if ( isset($_POST['recomecar'])){
+      $cand_voto = pg_query("DELETE FROM candidato_voto");
+      $voto      = pg_query("DELETE FROM voto");
+      $eleitor   = pg_query("DELETE FROM eleitor");
+      $result    = pg_query("DELETE FROM resultado");
+
+    }
       $resultado = pg_fetch_assoc($query); 
-    $totalbranco = pg_fetch_assoc($querybranco);
-      $totalnulo = pg_fetch_assoc($querynulo); 
-      $totalvoto = pg_fetch_assoc($querytotal);   
+    $totalbranco = pg_fetch_assoc($querybranco); 
+      $totalnulo = pg_fetch_assoc($querynulo);
+      $totalvoto = pg_fetch_assoc($querytotal);  
+  
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
