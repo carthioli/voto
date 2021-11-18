@@ -35,7 +35,7 @@
   </header>
   <main>
   <div class="container-fluid bg-secondary mb-5">
-    <h1 class="d-flex justify-content-center text-body">REALIZE SEU VOTO</h1>
+    <h1 class="d-flex justify-content-center text-info">REALIZE SEU VOTO</h1>
   </div>  
   <div class="container rounded d-flex justify-content-center col-3 bg-light text-success">
       <p class="text-success">
@@ -53,11 +53,11 @@
   </div>  
   <div class="container-fluid mt-2">
       <div class="grid">
-        <div class="grid-item g1 mr-2 bg-secondary rounded h-50">
+        <div class="grid-item g1 mr-2 bg-light  rounded h-50">
           <div class="d-flex justify-content-center h-50">
-            <img type="image" src="img/candidato1.jpeg" width="120px" height="120px" class="p-1 mt-3 bg-info rounded-circle">
+            <img type="image" src="img/candidato1.jpeg" width="120px" height="120px" class="p-1 mt-3 rounded-circle">
           </div>
-          <h1 class="d-flex justify-content-center text-light mt-4">CANDIDATO 1</h1> 
+          <h1 class="d-flex justify-content-center text-body mt-4">CANDIDATO 1</h1> 
             <div class="btn d-flex justify-content-center">
                 <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#primeirovoto">VOTAR</button>  
             <div class="modal fade" id="primeirovoto">
@@ -84,11 +84,11 @@
             </div>
           </div>
         </div>
-        <div class="grid-item g2 mr-2 bg-secondary rounded h-50">   
+        <div class="grid-item g2 mr-2 bg-light rounded h-50">   
           <div class="d-flex justify-content-center h-50">
-            <img type="image" src="img/candidato2.jpg" width="120px" height="120px" class="p-1 mt-3 bg-info rounded-circle">
+            <img type="image" src="img/candidato2.jpg" width="120px" height="120px" class="p-1 mt-3 rounded-circle">
           </div>
-          <h1 class="d-flex justify-content-center text-light mt-4">CANDIDATO 2</h1> 
+          <h1 class="d-flex justify-content-center text-body mt-4">CANDIDATO 2</h1> 
             <div class="btn d-flex justify-content-center">
                 <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#segundovoto">VOTAR</button>  
             <div class="modal fade" id="segundovoto">
@@ -114,11 +114,11 @@
             </div>
           </div>
         </div>
-        <div class="grid-item g3 bg-secondary rounded h-50">
+        <div class="grid-item g3 bg-light rounded h-50">
           <div class="d-flex justify-content-center h-50">
-            <img type="image" src="img/candidato3.jpg" width="120px" height="120px" class="p-1 mt-3 bg-info rounded-circle">
+            <img type="image" src="img/candidato3.jpg" width="120px" height="120px" class="p-1 mt-3 rounded-circle">
           </div>
-          <h1 class="d-flex justify-content-center text-light mt-4">CANDIDATO 3</h1> 
+          <h1 class="d-flex justify-content-center text-body mt-4">CANDIDATO 3</h1> 
             <div class="btn d-flex justify-content-center">
                 <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#terceirovoto">VOTAR</button>  
             <div class="modal fade" id="terceirovoto">
@@ -147,7 +147,7 @@
   </div>  
   <div class="container bg-secondary p-3 border rounded col-3">
     <div class="botaoform d-flex justify-content-center">
-        <button type="button" class="btn btn-light border ml-2 mr-2" data-toggle="modal" data-target="#branco">BRANCO</button> 
+        <button type="button" class="btn bg-light ml-2 mr-2" data-toggle="modal" data-target="#branco">BRANCO</button> 
         <div class="modal fade" id="branco">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content"> 
