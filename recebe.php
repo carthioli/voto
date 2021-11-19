@@ -52,7 +52,9 @@
             }     
       }
     }  
-   $queryd=pg_query("DELETE from resultado");
+
+    $queryd=pg_query("DELETE from resultado");
+
     $query=pg_query("SELECT count(cv.id_candidato) as qnt_voto, cv.id_candidato,
                      ca.nome
                      FROM candidato_voto as cv

@@ -17,15 +17,9 @@
                           ");
       $querytotal=pg_query("SELECT count(id_candidato) 
                             FROM candidato_voto;");       
-    if ( isset($_POST['recomecar'])){
-      $cand_voto = pg_query("DELETE FROM candidato_voto");
-      $voto      = pg_query("DELETE FROM voto");
-      $eleitor   = pg_query("DELETE FROM eleitor");
-      $result    = pg_query("DELETE FROM resultado");
 
-    }
       $resultado = pg_fetch_assoc($query); 
-    $totalbranco = pg_fetch_assoc($querybranco); 
+      $totalbranco = pg_fetch_assoc($querybranco); 
       $totalnulo = pg_fetch_assoc($querynulo);
       $totalvoto = pg_fetch_assoc($querytotal);  
   
@@ -106,8 +100,10 @@
     <div class="container d-flex justify-content-center col-6 mt-3">
       <form method="POST" action="apuracao.php">
           <button type="submit" class="btn btn-success text-body" name="atualizar">ATUALIZAR</button>
-          <button type="submit" class="btn btn-danger text-body" name="recomecar">RECOMEÇAR</button>
       </form>
+      <form method="POST" action="recomecar.php">
+          <button type="submit" class="btn btn-danger text-body" name="recomecar">RECOMEÇAR</button>
+      </form>      
     </div>  
   </div>  
   </main>  
