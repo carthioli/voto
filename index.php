@@ -1,5 +1,6 @@
 <?php
   include "mensagem.php";
+  /*include "verifica_voto.php";*/
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
