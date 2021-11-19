@@ -88,7 +88,7 @@
           <div class="d-flex justify-content-center h-50">
             <img type="image" src="img/candidato2.jpg" width="120px" height="120px" class="p-1 mt-3 rounded-circle">
           </div>
-          <h1 class="d-flex justify-content-center text-body mt-4">CANDIDATO 2</h1> 
+          <h1 class="d-flex justify-content-center text-light mt-4">CANDIDATO 2</h1> 
             <div class="btn d-flex justify-content-center">
                 <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#segundovoto">VOTAR</button>  
             <div class="modal fade" id="segundovoto">
@@ -118,7 +118,7 @@
           <div class="d-flex justify-content-center h-50">
             <img type="image" src="img/candidato3.jpg" width="120px" height="120px" class="p-1 mt-3 rounded-circle">
           </div>
-          <h1 class="d-flex justify-content-center text-body mt-4">CANDIDATO 3</h1> 
+          <h1 class="d-flex justify-content-center text-light mt-4">CANDIDATO 3</h1> 
             <div class="btn d-flex justify-content-center">
                 <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#terceirovoto">VOTAR</button>  
             <div class="modal fade" id="terceirovoto">
