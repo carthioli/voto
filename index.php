@@ -1,6 +1,7 @@
 <?php
   include "mensagem.php";
   /*include "verifica_voto.php";*/
+  header('location:publico/index.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,6 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <title>Votação</title>
+  
     <style>
       .grid {
       display: grid;
