@@ -1,3 +1,6 @@
+<?php
+    $nome = ['jose', 'joao', 'maria', 'maria'];
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,27 +12,42 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <title>Votação</title>
-    <style>
-      .grid {
-      display: grid;
-      grid-template-columns: 6fr 6fr 6fr;
-      grid-template-areas: "g1 g2 g3";
-      height: 550px;
-      }
-      .g1 {
-        grid-area: g1;
-      }
-      .g2 {
-        grid-area: g2;
-      }
-      .g3 {
-        grid-area: g3;
-      }
-    </style>  
 </head>
 <body>
-    <?php for($i = 0; $i < 3; $i++) : ?>
-        <p>100</p>
+    <?php for($i = 0; $i < count($nome); $i++) : ?>
+      <div class="float-left">
+      <div class="container-fluid mt-2 ">
+          <div class="d-flex justify-content-center h-50">
+            <img type="image" src="img/candidato1.jpeg" width="120px" height="120px" class="p-1 mt-3 rounded-circle">
+          </div>
+          <h1 class="d-flex justify-content-center text-body mt-4">CANDIDATO 1</h1> 
+            <div class="btn d-flex justify-content-center">
+                <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#primeirovoto">VOTAR</button>  
+            <div class="modal fade" id="primeirovoto">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">INFORME O ELEITOR:</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>                
+                  <div class="modal-body">
+                  <form method="POST" action="recebe.php">
+                    <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                    <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
+                  </div>
+                  <div class="modal-footer">
+                      <input type="hidden" name="voto" value="primeirocandidato">
+                      <button type="submit" class="btn btn-success">FINALIZAR</button>
+                      <a class="text-decoration-none text-body" href="recebe.php"><button type="button" class="btn btn-warning ml-2">CANCELAR</button></a>
+                      </form> 
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
     <?php endfor;?>
 </body>
 </html>
