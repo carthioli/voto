@@ -1,6 +1,4 @@
 <?php
-  include "mensagem.php";
-  /*include "verifica_voto.php";*/
   header('location:publico/index.php');
 ?>
 <!DOCTYPE html>

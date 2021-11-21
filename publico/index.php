@@ -1,10 +1,3 @@
-<?php 
-    include "\\..\\controle\\conexao.php";
-    $query = pg_query("SELECT id, nome, partido
-                       FROM candidato
-                      ");
-    $candidato = pg_fetch_assoc($query);
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
