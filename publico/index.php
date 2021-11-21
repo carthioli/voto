@@ -1,4 +1,8 @@
-<?php include "conexao.php";?>
+<?php 
+    include "\\..\\controle\\conexao.php";
+    $query = pg_query("SELECT id, nome, partido
+                       FROM candidato;")
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -29,6 +33,8 @@
     </style>  
 </head>
 <body>
-    <?php echo $link;?>
+    <?php for($i = 0; $i < 3; $i++) : ?>
+        <p>100</p>
+    <?php endfor;?>
 </body>
 </html>
