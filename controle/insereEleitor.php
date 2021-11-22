@@ -5,11 +5,12 @@
         try
         {
           $link = include "conexao.php";
+                  include "insereVoto.php";
     
           $inserir = "INSERT INTO eleitor(nome,documento) VALUES ('{$eleitor['nomeeleitor']}','{$eleitor['titulo']}')";
           $inseriu = pg_query($link , $inserir);
           
-          
+          ultimoId();
         }
         catch( Exception $e )
         {
