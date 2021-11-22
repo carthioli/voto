@@ -1,14 +1,19 @@
 <?php
 
-function ultimoId(){
-  include "conexao.php";
 
-  $query = "SELECT max(id) as ultimo_id 
-            FROM eleitor";
 
-  $resultado = pg_fetch_assoc ( pg_query( $query ) );
-  
-  $inserir = "INSERT INTO voto(id_eleitor) VALUES ('{$resultado['ultimo_id']}')";
+function insereVoto( $eleitor ){
+
+  $link = include "conexao.php";
+
+  $inserir = "INSERT INTO voto(id_eleitor) VALUES ('{$eleitor}')";
   $inseriu = pg_query($link , $inserir);
+
+  if( $inseriu ){
+    return ultimoId('voto');
+  }
+  else{
+    return false;
+  }
 
 }

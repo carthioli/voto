@@ -38,7 +38,7 @@
               <div class="btn d-flex justify-content-center">
                 
                 <button type="button" class="btn btn-success text-white m-1" onclick="enviaFormulario()" data-toggle="modal" data-target="#voto_<?php echo $candidato['id'];?>">VOTAR</button>  
-                <div class="modal fade" id="voto_<?php echo $candidato['id'];?>">
+                <div class="modal fade"  id="voto_<?php echo $candidato['id'];?>">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -47,6 +47,7 @@
                       </div>                
                       <div class="modal-body">
                         <form method="POST" id="form_candidato_<?php echo $candidato['id'];?>"  action="computavoto.php">
+                          <input type="hidden" class="form-control" placeholder="Digite o nome do ELEITOR:" name="candidato" value="<?php echo $candidato['id'];?>">
                           <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
                           <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
                         </form>
