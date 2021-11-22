@@ -1,7 +1,10 @@
 <?php
-    $nome = ['Thaysa', 'Thiago', 'Joao'];
-    $img1 = header(location:"../img/candidato1.jpeg");
+    $nome = ['José', 'Maria', 'Joao', 'nulo', 'branco'];
+    $candidato1 = $nome[0];
+    $candidato2 = $nome[1];
+    $candidato3 = $nome[2];
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,12 +20,21 @@
 <body>
 <?php foreach( $nome as $candidato ):?>
         
+          
           <div class="container">      
-            <div class="p-2 border float-left ml-5 mt-5">
+            <div class="p-2 border float-left w-25 ml-5 mt-5">
               <div class="d-flex justify-content-center h-50">
-                <img type="image"  width="120px" height="120px" class="p-1 mt-3 rounded-circle"><?= $img1?></img>
+                <?php if($candidato == $candidato1):?>
+                <img type="image" src="img/candidato1.jpeg"  width="120px" height="120px" class="p-1 mt-3 rounded-circle">
+                <?php endif;?>
+                <?php if($candidato == $candidato2):?>
+                <img type="image" src="img/candidato2.jpg"  width="120px" height="120px" class="p-1 mt-3 rounded-circle">
+                <?php endif;?>
+                <?php if($candidato == $candidato3):?>
+                <img type="image" src="img/candidato3.jpg"  width="120px" height="120px" class="p-1 mt-3 rounded-circle">
+                <?php endif;?>
               </div>
-              <h1 class="d-flex justify-content-center text-body mt-4">CANDIDATO 1</h1>
+              <h1 class="d-flex justify-content-center text-body text-uppercase mt-4"><?= $candidato?></h1>
               <div class="btn d-flex justify-content-center">
                     <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#primeirovoto">VOTAR</button>  
                 <div class="modal fade" id="primeirovoto">
