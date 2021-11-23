@@ -7,6 +7,8 @@
     
     if( isset( $_POST['nomeeleitor'] ) && isset( $_POST['titulo'] ) ){
       inserirEleitor( $_POST );
-
     }
-    header('location: formulario.php');
+    if( isset( $_POST['id_candidato'] ) ){
+      $id_candidato = $_POST['id_candidato'];
+      echo $id_candidato;
+    }

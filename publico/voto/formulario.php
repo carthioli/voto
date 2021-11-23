@@ -47,6 +47,7 @@
                       </div>                
                       <div class="modal-body">
                         <form method="POST" id="form_candidato_<?php echo $candidato['id'];?>"  action="computavoto.php">
+                          <input type="hidden" name="id_candidato" value="<?php echo $candidato['id'];?>">
                           <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
                           <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
                         </form>
