@@ -3,7 +3,7 @@
   include "../config.php";
 
   include CONTROLE . "insereEleitor.php";
-  
+  include CONTROLE . "insereVoto.php";
     
     if( isset( $_POST['nomeeleitor'] ) && isset( $_POST['titulo'] ) ){
 
