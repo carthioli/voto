@@ -10,7 +10,7 @@
         $inseriu = pg_query( $link, $inserir );
         
         if( $inseriu ){
-          return $id_eleitor;
+          return $id_candidato;
         }else{
           return false;
         }

@@ -5,14 +5,13 @@
         try
         {
           $link = include "conexao.php";
-          include "ultimoId.php";
+          include "ultimo.php";
           
           $inserir = "INSERT INTO eleitor(nome,documento) VALUES ('{$eleitor['nomeeleitor']}','{$eleitor['titulo']}')";
           $inseriu = pg_query($link , $inserir);
 
           if( pg_affected_rows( $inseriu ) ){
             return ultimoId( "eleitor" );
-            // esperando o retorno do ultimo id
           }
           else{
             return false;

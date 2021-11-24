@@ -7,9 +7,10 @@
         $inserir = "INSERT INTO voto(id_eleitor) VALUES ('{$id_eleitor}')";
         $inseriu = pg_query( $link, $inserir );
         
-        if( $inseriu ){
-          return $id_eleitor;
-        }else{
+        if( pg_affected_rows( $inseriu ) ){
+          return ultimoVoto( "Voto" );
+        }
+        else{
           return false;
         }
 
