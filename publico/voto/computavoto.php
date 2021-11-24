@@ -1,5 +1,4 @@
 <?php
-
   include "../config.php";
   include CONTROLE . "insereVoto.php";
   include CONTROLE . "insereEleitor.php";
@@ -7,7 +6,8 @@
   include CONTROLE . "mensagem.php";
 
   if( ! isset( $_POST['id_candidato'] ) ){
-    header('location:formulario.php?confirma=1');
+    header('location:formulario.php');
+    $_SESSION['erro'] = 1;
     exit;
   }
 
@@ -23,12 +23,14 @@
             
             inserirCandidatoVoto( $voto, $_POST ); 
 
-            header('location:formulario.php?confirma=4');
+            header('location:formulario.php');
+            $_SESSION['confirma'] = 1;
             exit;
 
           }
           else{
-            header('location:formulario.php?confirma=1');
+            header('location:formulario.php');
+            $_SESSION['erro'] = 1;
             exit;            
           }
 
@@ -41,6 +43,7 @@
       }
               
   }else{
-    header('location:formulario.php?confirma=1');
+    header('location:formulario.php');
+    $_SESSION['erro'] = 1;
     exit;
   }

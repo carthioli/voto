@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  $envia = true;
+  if( $envia ){
+    $_SESSION['confirma'] = 2;
+  }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,7 +22,7 @@
             <div class="p-2 border float-left w-25 ml-5 mt-5">
               <h1 class="d-flex justify-content-center text-center text-body text-uppercase mt-4">realizar votação</h1><br/>
               <div class="btn d-flex justify-content-center">
-                    <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#voto"><a class="text-white text-decoration-none" href="voto/formulario.php?inicio=5">VOTAR</a></button>  
+                    <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#voto"><a class="text-white text-decoration-none" href="voto/formulario.php">VOTAR</a></button>  
                    
               </div>
             </div>

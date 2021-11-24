@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "..\..\controle\conexao.php";
     include "..\config.php";
     include "..\..\controle\mostraCandidatos.php";
@@ -23,20 +24,25 @@
 </head>
 <body>
       <div class="container d-flex justify-content-center mt-4">
-          <p class="text-success">
+          <p class="text-danger">
             <?php
-                if ( $_GET ){
-                  if ( isset( $_GET['confirma'] ) ){
-                    $mensagem_confirma = mensagens( $_GET['confirma'] );
+                  if ( isset( $_SESSION['erro'] ) ){
+                    session_destroy();
+                    $mensagem_confirma = mensagens( $_SESSION['erro'] );
                     echo "{$mensagem_confirma}";
                   }
-                  if ( isset( $_GET['inicio'] ) ){
-                    $mensagem_confirma = mensagens( $_GET['inicio'] );
-                    echo "{$mensagem_confirma}";
-                  }
-                }
             ?>
           </p>
+          <p class="text-success">
+            <?php
+                  if ( isset( $_SESSION['confirma'] ) ){
+                    session_destroy();
+                    $mensagem_confirma = mensagensConfirma( $_SESSION['confirma'] );
+                    echo "{$mensagem_confirma}";
+                  }
+            ?>
+          </p>
+          
       </div>
 <?php
       foreach( $candidatos as $candidato ):?>

@@ -4,8 +4,8 @@
 
  
     $querybranco = pg_query("SELECT count(id_candidato) as total_votos
-                           FROM candidato_voto
-                           WHERE id_candidato = 4");
+                             FROM candidato_voto
+                             WHERE id_candidato = 4");
 
     $querynulo = pg_query("SELECT count(id_candidato) as total_votos
                            FROM candidato_voto

@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     function inserirEleitor( $eleitor ){
 
         try
@@ -24,11 +26,13 @@
               }
             }
             else
-            {
-              header('location:formulario.php?confirma=3');              
+            {  
+              header('location:formulario.php');
+              $_SESSION['erro'] = 3;
             }
           }else{
-            header('location:formulario.php?confirma=2');
+            header('location:formulario.php');
+            $_SESSION['erro'] = 2;
           }
           
         }
