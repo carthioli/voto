@@ -1,7 +1,6 @@
 <?php
 
       function inserirVoto( $id_eleitor ){
-        print_r($id_eleitor);
         
         $link = include "conexao.php";
 
@@ -9,7 +8,7 @@
         $inseriu = pg_query( $link, $inserir );
         
         if( $inseriu ){
-          return $inseriu;
+          return $id_eleitor;
         }else{
           return false;
         }
