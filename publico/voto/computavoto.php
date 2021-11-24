@@ -8,27 +8,39 @@
 
   if( ! isset( $_POST['id_candidato'] ) ){
     header('location:formulario.php?confirma=1');
+    exit;
   }
 
   if( isset( $_POST['nomeeleitor'] ) && isset( $_POST['titulo'] ) ){
 
     $eleitor_inserido = inserirEleitor( $_POST );
+
       if( $eleitor_inserido ){
+        
         $voto = inserirVoto( $eleitor_inserido );
-        header('location:formulario.php?confirma=4');
+        if ( $voto ){
+          if( isset( $_POST['id_candidato'] ) ){
+            
+            inserirCandidatoVoto( $voto, $_POST ); 
+
+            header('location:formulario.php?confirma=4');
+            exit;
+
+          }
+          else{
+            header('location:formulario.php?confirma=1');
+            exit;            
+          }
+
+        }
+        else{
+          return false;
+        }
       }else{
         return false;
       }
               
   }else{
     header('location:formulario.php?confirma=1');
+    exit;
   }
-  if( isset( $_POST['id_candidato'] ) ){
-    if ( $voto ){
-      inserirCandidatoVoto( $voto, $_POST );
-    }else{
-      return false;
-    } 
-  }
-  
-  

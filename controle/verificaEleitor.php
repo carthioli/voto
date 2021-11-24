@@ -1,21 +1,17 @@
 <?php
 
-       function verificaDocumento( $documentoeleitor, $tabela ){
+       function verificaDocumento( $documento, $tabela = "eleitor" ){
 
         $link = include "conexao.php";
-
-        $documento = $documentoeleitor['titulo'];
-        json_encode($documento);
   
-        $query = pg_query("SELECT id, documento
-                           FROM  $tabela 
-                           WHERE documento = '$documento';
-                          ");
+        $query = pg_query("SELECT id
+                           FROM  {$tabela} 
+                           WHERE documento = '{$documento}'");
         
         $resultado = pg_fetch_assoc( $query );
         
         if( $resultado ){
-          return $documento;
+          return true;
         }
         else{
           return false;

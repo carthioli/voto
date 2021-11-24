@@ -9,29 +9,27 @@
                   include "verificaEleitor.php";
 
           if ( ! empty( $eleitor['nomeeleitor'] ) && ! is_numeric( $eleitor['nomeeleitor'] ) ){
-            $verificaDocumento = verificaDocumento( $_POST, "eleitor" );
 
-            if($verificaDocumento > 0){
-              header('location:formulario.php?confirma=3');
-            }else{
+            $verificaDocumento = verificaDocumento( $_POST['titulo'] );
+
+            if( ! $verificaDocumento ){
               $inserir = "INSERT INTO eleitor(nome,documento) VALUES ('{$eleitor['nomeeleitor']}','{$eleitor['titulo']}')";
               $inseriu = pg_query($link , $inserir);
   
-                if( pg_affected_rows( $inseriu ) ){
-                  return ultimoId( "eleitor" );
-                }
-                else{
-                  return false;
-                }
+              if( pg_affected_rows( $inseriu ) ){
+                return ultimoId( "eleitor" );
+              }
+              else{
+                return false;
+              }
             }
-
-            
-
+            else
+            {
+              header('location:formulario.php?confirma=3');              
+            }
           }else{
             header('location:formulario.php?confirma=2');
           }
-
-          
           
         }
         catch( Exception $e )
