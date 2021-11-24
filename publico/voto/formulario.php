@@ -2,6 +2,7 @@
     include "..\..\controle\conexao.php";
     include "..\config.php";
     include "..\..\controle\mostraCandidatos.php";
+    include "..\..\controle\mensagem.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,21 +18,26 @@
   <title>Votação</title>
 </head>
 <body>
+      <div class="container d-flex justify-content-center mt-4">
+          <p class="text-success">
+            <?php
+                if( isset( $mensagem ) ){
+                  echo $mensagem;
+                }
+            ?>
+          </p>
+      </div>
 <?php
-      // foreach( $lista_array AS $chave_posicao => $conteudo ):
-      // foreach( $lista_array AS $candidato['id'] => $candidato['nome'] ):
       foreach( $candidatos as $candidato ):?>
           <div class="container">      
-            <div class="p-2 border float-left w-25 ml-5 mt-5">
+            <div class="p-2 border float-left w-25 ml-5 mt-3">
               <h1 class="d-flex justify-content-center text-body text-uppercase mt-4">
-                <?php echo $candidato['nome'];?>
+                <?php 
+                  echo $candidato['nome'];
+                ?>
               </h1><br/>
               <h4 class="d-flex justify-content-center text-body text-uppercase mt-4">
                 <?php
-                  /*
-                  $idcandidato = $candidato['id'] + 1; 
-                  echo $candidato['id'] + 1; 
-                  */
                   echo $candidato['id'];
                 ?>
               </h4>
