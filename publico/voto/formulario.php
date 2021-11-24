@@ -14,6 +14,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
   <script src="../javascript/script.js"></script>
   <title>Votação</title>
 </head>
@@ -21,8 +25,15 @@
       <div class="container d-flex justify-content-center mt-4">
           <p class="text-success">
             <?php
-                if( isset( $mensagem ) ){
-                  echo $mensagem;
+                if ( $_GET ){
+                  if ( isset( $_GET['confirma'] ) ){
+                    $mensagem_confirma = mensagens( $_GET['confirma'] );
+                    echo "{$mensagem_confirma}";
+                  }
+                  if ( isset( $_GET['inicio'] ) ){
+                    $mensagem_confirma = mensagens( $_GET['inicio'] );
+                    echo "{$mensagem_confirma}";
+                  }
                 }
             ?>
           </p>
@@ -55,7 +66,8 @@
                         <form method="POST" id="form_candidato_<?php echo $candidato['id'];?>"  action="computavoto.php">
                           <input type="hidden" name="id_candidato" value="<?php echo $candidato['id'];?>">
                           <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
-                          <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
+                          <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo" id="titulo" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}">
+                          <!-- <script type="text/javascript">$("#titulo").mask("000.000.000-00");</script> -->
                         </form>
                       </div>
                       <div class="modal-footer">

@@ -2,27 +2,25 @@
 
   function mensagens( $erro ){
     
-    print_r($erro);
-
      switch ( $erro ){
        case 1:
-         $mensagem = "Erro: Informe o CANDIDATO";
+         return "ERRO: Informe o CANDIDATO";//OK
          break;
        case 2:
-         $mensagem = "Erro: Informe o ELEITOR VALIDO";
+         return "ERRO: Informe o ELEITOR VALIDO";//OK
          break;
        case 3:
-         $mensagem = "Erro: Voto já realizado";
+         return "ERRO: Voto já realizado";//OK
          break;
        case 4:
-         $mensagem = "VOTO REALIZADO COM SUCESSO!";
+         return "VOTO REALIZADO COM SUCESSO!";//OK
          break;  
        case 5:
-         $mensagem = "REALIZE SEU VOTO!";
+         return "INICIE A VOTAÇÃO!";//OK
          break;  
        default:
-         $mensagem = "Erro não catalogado";
-         break;  ;      
+         return "ERRO não catalogado";
+         break;      
          
      }
      }
