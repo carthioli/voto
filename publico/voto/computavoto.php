@@ -1,8 +1,8 @@
 <?php
   include "../config.php";
-  include CONTROLE . "insereVoto.php";
-  include CONTROLE . "insereEleitor.php";
-  include CONTROLE . "insereCandidatoVoto.php";
+  include CONTROLE . "insere\insereVoto.php";
+  include CONTROLE . "insere\insereEleitor.php";
+  include CONTROLE . "insere\insereCandidatoVoto.php";
   include CONTROLE . "mensagem.php";
 
   if( ! isset( $_POST['id_candidato'] ) ){

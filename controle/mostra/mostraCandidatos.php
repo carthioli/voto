@@ -1,5 +1,5 @@
 <?php
-
+    
     $query = pg_query("SELECT id, nome 
                        FROM candidato
                       ");

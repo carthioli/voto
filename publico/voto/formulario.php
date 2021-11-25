@@ -1,8 +1,8 @@
 <?php
     session_start();
-    include "..\..\controle\conexao.php";
+    include "..\..\controle\insere\conexao.php";
     include "..\config.php";
-    include "..\..\controle\mostraCandidatos.php";
+    include "..\..\controle\mostra\mostraCandidatos.php";
     include "..\..\controle\mensagem.php";
 ?>
 <!DOCTYPE html>
