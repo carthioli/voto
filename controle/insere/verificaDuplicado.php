@@ -1,12 +1,12 @@
 <?php
 
-       function verificaDocumento( $documento, $tabela = "eleitor" ){
+       function verificaDuplicado( $documento, $tabela, $coluna ){
 
         $link = include "conexao.php";
   
         $query = pg_query("SELECT id
                            FROM  {$tabela} 
-                           WHERE documento = '{$documento}'");
+                           WHERE $coluna = '{$documento}'");
         
         $resultado = pg_fetch_assoc( $query );
         

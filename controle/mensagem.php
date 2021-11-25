@@ -11,7 +11,7 @@
          break;
        case 3:
          return "ERRO: Voto já realizado";//OK
-         break;  
+         break;     
        default:
          return "ERRO não catalogado";
          break;      
@@ -26,5 +26,12 @@
       case 2:
         return "INICIE A VOTAÇÃO!";//OK
         break;
+      case 3:
+        return "PARTIDO CADASTRADO COM SUCESSO!";//OK
+        break; 
+      case 4:
+        return "CANDIDATO CADASTRADO COM SUCESSO!";//OK
+        break; 
     }  
   }
+

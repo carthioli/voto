@@ -1,5 +1,12 @@
 <?php
       include "..\mostra\\mostraApuracao.php";
+      include "..\insere\\verificaDuplicado.php";
+      $verificaDuplicado = verificaDuplicado( $resultado['total_voto'], "resultado", "total_voto" );
+
+            if( ! $verificaDuplicado ){
+              $resultado['nome'] = 'INDEFERIDO';
+              $resultado['total_voto'] = 'INDEFERIDO';
+            }    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -82,8 +89,9 @@
             </div>
             <div class="col-4 mt-1">
 
+            
               <p class="text-body mt-1 nomeapuracao"><?php if ( isset($resultado['nome']) ){echo $resultado['nome'];}else{echo "INDEFINIDO";};?></p><br>
-              <p class="text-body mt-1 qntvoto"><?php if ( isset($resultado['total_votos']) ){echo $resultado['total_votos'];}else{echo "INDEFINIDO";};?></p>
+              <p class="text-body mt-1 qntvoto"><?php if ( isset($resultado['total_voto']) ){echo $resultado['total_voto'];}else{echo "INDEFINIDO";};?></p>
 
             </div>  
           </div>

@@ -8,11 +8,11 @@
         {
           $link = include "conexao.php";
                   include "ultimo.php";
-                  include "verificaEleitor.php";
+                  include "verificaDuplicado.php";
 
-          if ( ! empty( $eleitor['nomeeleitor'] ) && ! is_numeric( $eleitor['nomeeleitor'] ) ){
+          if ( ! empty( $eleitor['nomeeleitor'] ) && ! is_numeric( $eleitor['nomeeleitor'] ) && ! empty( $eleitor['titulo'] ) && is_numeric( $eleitor['titulo'] ) ){
 
-            $verificaDocumento = verificaDocumento( $_POST['titulo'] );
+            $verificaDocumento = verificaDuplicado( $_POST['titulo'], "eleitor", "documento" );
 
             if( ! $verificaDocumento ){
               $inserir = "INSERT INTO eleitor(nome,documento) VALUES ('{$eleitor['nomeeleitor']}','{$eleitor['titulo']}')";

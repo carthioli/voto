@@ -21,12 +21,18 @@ $querytotalvotos = pg_query("SELECT ca.id, ca.nome, cv.id_candidato, count(id_ca
                              FROM candidato_voto AS cv
                              JOIN candidato AS ca ON cv.id_candidato = ca.id
                              GROUP BY ca.id, ca.nome, cv.id_candidato
-                             ORDER BY 1 ASC;");       
+                             ORDER BY count DESC;");       
 
+ $querymaiorvoto = pg_query("SELECT id, nome, total_voto
+                             FROM resultado
+                             GROUP BY id, total_voto, nome
+                             HAVING total_voto = (SELECT MAX(total_voto) FROM resultado)
+                             ORDER BY id, nome, total_voto");
 
    $totalbranco = pg_fetch_assoc($querybranco); 
      $totalnulo = pg_fetch_assoc($querynulo);
      $totalvoto = pg_fetch_assoc($querytotal);  
+     $resultado = pg_fetch_assoc($querymaiorvoto); 
 
      $candidatos = [];
 
