@@ -27,7 +27,7 @@
     <p class="text-success">
       <?php
               if ( isset( $_SESSION['insere'] ) ){    
-                $mensagem_confirma = mensagens( $_SESSION['insere'] );
+                $mensagem_confirma = mensagensConfirma( $_SESSION['insere'] );
                 echo "{$mensagem_confirma}";
               }
        ?>

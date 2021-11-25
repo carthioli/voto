@@ -8,7 +8,7 @@
 
     if( pg_affected_rows( $inseriu ) ){
       
-      $_SESSION['insere'] = 4;
+      $_SESSION['insere'] = 3;
     }
     else{
       return false;
