@@ -13,7 +13,7 @@
       $titulo = $_POST['titulo'];
       $candidato = $_POST['candidato'];
 
-      if ( !is_null( $nomeeleitor ) && !is_null( $titulo ) ){
+      if ( !empty( $nomeeleitor ) && !empty( $titulo ) ){
 
         $eleitor = new Eleitor ( $nomeeleitor, $titulo );
         $eleitor->insereEleitor( array( $eleitor->nome, $eleitor->documento ) );
@@ -30,7 +30,7 @@
         $_SESSION['valida'] = 1;
       }else{
           header ( 'location: formulario.php' );
-          $_SESSION['erro'] = 1;        
+          $_SESSION['erro'] = 2;        
       }
       
     }else{

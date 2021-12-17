@@ -6,7 +6,9 @@
     include CONTROLE . "mostrar/mostraCandidato.php";
     include CONTROLE . "mensagem.php";
 ?>
-
+  <title>Votação</title>
+</head>
+<body>
       <p class="text-center mt-5 text-success">
        <?php
         if ( isset( $_SESSION['valida'] ) ){
@@ -20,7 +22,7 @@
       <p class="text-center mt-5 text-danger">
        <?php
         if ( isset( $_SESSION['erro'] ) ){
-          $mensagem = mensagemValida( $_SESSION['erro'] );
+          $mensagem = mensagemErro( $_SESSION['erro'] );
           unset ($_SESSION['erro']);
           unset ($_SESSION['valida']);
           echo $mensagem;

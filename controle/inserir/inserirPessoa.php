@@ -1,7 +1,7 @@
 <?php
     class Eleitor
     {
-        public function __construct( string $nome="", int $documento=0)
+        public function __construct( string $nome=null, int $documento=0)
         {
             $this->nome = $nome;
             $this->documento = $documento;
