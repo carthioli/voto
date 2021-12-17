@@ -1,26 +1,40 @@
 <?php
+  session_start();
 
-  include "../config.php";
-
-  include CONTROLE . "insereEleitor.php";
-  include CONTROLE . "insereVoto.php";
+  require "../config.php";
+  require CONTROLE . "conexao.php";
+  require CONTROLE . "mostrar/mostraUltimoId.php";
+  require CONTROLE . "inserir/inserirPessoa.php";
+  require CONTROLE . "inserir/inserirVoto.php";
     
     if( isset( $_POST['nomeeleitor'] ) && isset( $_POST['titulo'] ) ){
 
-      $eleitor = inserirEleitor( $_POST );
-      echo "eleitor: {$eleitor}" . PHP_EOL;
-
-      $voto = insereVoto( $eleitor );
-      echo "voto: {$voto}" . PHP_EOL;
-
-      $candidato = insertCandidatoVoto( $voto, $_POST['candidato'] );
-      echo "candidato: {$candidato}" . PHP_EOL;      
-
-    }
-    
-    /*
-    if( isset( $_POST['candidato'] ) ){
+      $nomeeleitor = $_POST['nomeeleitor'];
+      $titulo = $_POST['titulo'];
       $candidato = $_POST['candidato'];
-      candidato_voto( $candidato );  
+
+      if ( !is_null( $nomeeleitor ) && !is_null( $titulo ) ){
+
+        $eleitor = new Eleitor ( $nomeeleitor, $titulo );
+        $eleitor->insereEleitor( array( $eleitor->nome, $eleitor->documento ) );
+        
+        if ( $eleitor ) {
+          $ultimoEleitor = ultimoId( 'eleitor' );
+          $voto = new Voto ( $ultimoEleitor );
+          $voto->insereVoto( $ultimoEleitor );
+          $ultimoVoto = ultimoId( 'voto' );
+          $voto->insereCandidatoVoto( $ultimoVoto, $candidato );
+        }
+        
+        header ( 'location: formulario.php' );
+        $_SESSION['valida'] = 1;
+      }else{
+          header ( 'location: formulario.php' );
+          $_SESSION['erro'] = 1;        
+      }
+      
+    }else{
+      $_SESSION['erro'] = 2;
+      header( 'location: formulario.php' );
     }
-    */
+?>    

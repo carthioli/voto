@@ -1,37 +1,41 @@
 <?php
-    include "..\..\controle\conexao.php";
-    include "..\config.php";
-    include "..\..\controle\mostraCandidatos.php";
+    session_start();
+    include "../header/header.php";
+    include "../config.php";
+    include CONTROLE . "conexao.php";
+    include CONTROLE . "mostrar/mostraCandidato.php";
+    include CONTROLE . "mensagem.php";
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="../javascript/script.js"></script>
-  <title>Votação</title>
-</head>
-<body>
-<?php
-      // foreach( $lista_array AS $chave_posicao => $conteudo ):
-      // foreach( $lista_array AS $candidato['id'] => $candidato['nome'] ):
+
+      <p class="text-center mt-5 text-success">
+       <?php
+        if ( isset( $_SESSION['valida'] ) ){
+          $mensagem = mensagemValida( $_SESSION['valida'] );
+          unset ($_SESSION['valida']);
+          unset ($_SESSION['erro']);
+          echo $mensagem;
+        }
+      ?>
+      </p>
+      <p class="text-center mt-5 text-danger">
+       <?php
+        if ( isset( $_SESSION['erro'] ) ){
+          $mensagem = mensagemValida( $_SESSION['erro'] );
+          unset ($_SESSION['erro']);
+          unset ($_SESSION['valida']);
+          echo $mensagem;
+        }
+      ?>
+      </p>
+      <?php
       foreach( $candidatos as $candidato ):?>
           <div class="container">      
-            <div class="p-2 border float-left w-25 ml-5 mt-5">
+            <div class="p-2 border float-left w-25 ml-5 mt-2">
               <h1 class="d-flex justify-content-center text-body text-uppercase mt-4">
                 <?php echo $candidato['nome'];?>
               </h1><br/>
               <h4 class="d-flex justify-content-center text-body text-uppercase mt-4">
                 <?php
-                  /*
-                  $idcandidato = $candidato['id'] + 1; 
-                  echo $candidato['id'] + 1; 
-                  */
                   echo $candidato['id'];
                 ?>
               </h4>
