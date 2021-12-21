@@ -1,36 +1,35 @@
 <?php
     session_start();
     include "../header/header.php";
-    include "../config.php";
-    include CONTROLE . "conexao.php";
-    include CONTROLE . "mostrar/mostraCandidato.php";
-    include CONTROLE . "mensagem.php";
+    require "../vendor/autoload.php";
+    
+    $candidato = new \Carlos\Voto\App\Conexao;
+    $mensagem = new \Carlos\Voto\Mensagem\Mensagem;
+   
 ?>
   <title>Votação</title>
 </head>
 <body>
       <p class="text-center mt-5 text-success">
-       <?php
+      <?php
         if ( isset( $_SESSION['valida'] ) ){
-          $mensagem = mensagemValida( $_SESSION['valida'] );
+          echo $mensagem->mensagemValida( $_SESSION['valida'] );
           unset ($_SESSION['valida']);
           unset ($_SESSION['erro']);
-          echo $mensagem;
         }
       ?>
       </p>
       <p class="text-center mt-5 text-danger">
        <?php
         if ( isset( $_SESSION['erro'] ) ){
-          $mensagem = mensagemErro( $_SESSION['erro'] );
+          echo $mensagem->mensagemErro( $_SESSION['erro'] );
           unset ($_SESSION['erro']);
           unset ($_SESSION['valida']);
-          echo $mensagem;
         }
       ?>
       </p>
       <?php
-      foreach( $candidatos as $candidato ):?>
+      foreach( $candidato->mostraCandidato() as $candidato ):?>
           <div class="container">      
             <div class="p-2 border float-left w-25 ml-5 mt-2">
               <h1 class="d-flex justify-content-center text-body text-uppercase mt-4">

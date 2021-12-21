@@ -1,0 +1,81 @@
+<?php
+  session_start();
+
+  require "../vendor/autoload.php";
+
+  /*
+  use Carlos\Voto\App\Eleitor;
+  use Carlos\Voto\App\Conexao;
+  use Carlos\Voto\App\Voto;
+  use Carlos\Voto\App\Candidato_voto;
+  */
+  // CandidatoVoto
+
+  use Carlos\Voto\App\{ 
+                        Eleitor, 
+                        Conexao, 
+                        Voto, 
+                        Candidato_voto as CandidatoVoto
+                      };
+    
+    if( isset( $_POST['nomeeleitor'] ) && isset( $_POST['titulo'] ) ){
+
+      $nomeeleitor = $_POST['nomeeleitor'];
+      $titulo = $_POST['titulo'];
+      $candidato = $_POST['candidato'];
+
+      if ( !empty( $nomeeleitor ) && !empty( $titulo ) ){
+
+        /*
+        $eleitor = new Eleitor ( $nomeeleitor, $titulo );
+        $eleitor->insereEleitor( array( $eleitor->nome, $eleitor->documento ) );
+        */
+
+        /* modo 1
+        $eleitor = new Eleitor ( $nomeeleitor, $titulo );
+        $eleitor->insereEleitor();
+        */
+
+        // modo 2
+
+        $eleitor = (new Eleitor ( $nomeeleitor, $titulo ))->insereEleitor();
+        
+        if ( $eleitor ) 
+        {
+          $voto = ( new Voto ( $eleitor ) )->insereVoto();
+        }
+        else
+        {
+          header ( 'location: formulario.php' );
+          $_SESSION['erro'] = 1;  
+        }  
+        if ( $voto ) 
+        {
+          $candidatoVoto = ( new CandidatoVoto ( $voto->id, $candidato ) )->insereCandidatoVoto();
+        }
+        else
+        {
+          header ( 'location: formulario.php' );
+          $_SESSION['erro'] = 1;  
+        }
+        if ( $candidatoVoto ) 
+        {
+          header ( 'location: formulario.php' );
+          $_SESSION['valida'] = 1;
+        }
+        else
+        {
+          header ( 'location: formulario.php' );
+          $_SESSION['erro'] = 1; 
+        }
+    
+      }else{
+         header ( 'location: formulario.php' );
+         $_SESSION['erro'] = 2;       
+      }
+      
+    }else{
+      $_SESSION['erro'] = 2;
+      header( 'location: formulario.php' );
+    }
+?>    
