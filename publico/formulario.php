@@ -24,8 +24,8 @@
                 ?>
               </h4>
               <div class="btn d-flex justify-content-center">
-                <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target=".form-voto">VOTAR</button>  
-                <div class="modal fade form-voto" class="form-voto" id="candidato" value="<?php echo $candidato->id;?>">
+                <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#form-voto<?php echo $candidato->id;?>">VOTAR</button>  
+                <div class="modal fade form-voto" id="form-voto<?php echo $candidato->id;?>">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -34,12 +34,14 @@
                       </div>                
                       <div class="modal-body">
                         <form >
+                        <?php echo $candidato->id;?>
+                          <input type="hidden" class="form-control" id="candidato" value="<?php echo $candidato->id;?>">
                           <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" id="nomeeleitor" name="nomeeleitor">
                           <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
 				                  <input type="hidden" id="metodo" value="formulario-ajax" />
                             <div class="modal-footer">
-                              <button type="submit" class="btn btn-success" id="finalizar" value="finalizar" data-dismiss="">FINALIZAR</button>
-                              <button type="submit" class="btn btn-warning ml-2" id="cancelar">CANCELAR</button>
+                              <button type="submit" class="btn btn-success" id="finalizar">FINALIZAR</button>
+                              <button type="button" class="btn btn-warning ml-2" id="cancelar">CANCELAR</button>
                             </div>
                         </form>
                       </div>
