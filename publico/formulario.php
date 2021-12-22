@@ -56,12 +56,13 @@
                           <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" id="nomeeleitor" name="nomeeleitor">
                           <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
 				                  <input type="hidden" id="metodo" value="formulario-ajax" />
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-success" name="enviar" value="finalizar">FINALIZAR</button>
+                              <button type="button" class="btn btn-warning ml-2" data-dismiss="modal">CANCELAR</button>
+                            </div>
                         </form>
                       </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" name="enviar" value="finalizar">FINALIZAR</button>
-                        <button type="button" class="btn btn-warning ml-2" data-dismiss="modal">CANCELAR</button>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
