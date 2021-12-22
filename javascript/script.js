@@ -1,12 +1,10 @@
 
-	$('#form-voto').submit(function(e){
+	$('.form-voto').submit(function(e){
 		e.preventDefault();
-		
+
 		if($('#finalizar').val() == 'Finalizar...'){
 			return(false);
 		}
-		
-		$('#finalizar').val('Finalizar...');
 		
 		$.ajax({
 			url: 'valida-form.php',
@@ -15,17 +13,33 @@
 			data: {
 				'metodo': $('#metodo').val(),
 				'nome': $('#nomeeleitor').val(),
+				'titulo': $('#titulo').val(),
         'candidato': $('#candidato').val()
 			}
-		}).done(function(data){
+
+		}).success(function(data){
 			
-			alert(data);
+			result = window.confirm(data);
 			
-			$('#Finalizar').val('Finalizar');
+			if (result == true) {
+					$('#cancelar').click();			
+			}else{
+				document.location.reload(true);
+			}
+
 			$('#metodo').val('formulario-ajax');
 			$('#nomeeleitor').val('');
+			$('#titulo').val('');
       $('#candidato').val('');
+
 			console.log(data)
 		});
-		
 	});
+	
+	$('.close').click(function(e){
+		$('.close').attr('data-dismiss', 'modal')
+	});
+	$('#cancelar').click(function(e){
+			$('#cancelar').attr('data-dismiss', 'modal')
+	});
+	
