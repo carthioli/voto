@@ -11,7 +11,7 @@
   <title>Votação</title>
 </head>
 <body>
-      <p class="text-center mt-5 text-success">
+<p class="text-center mt-5 text-success">
       <?php
         if ( isset( $_SESSION['valida'] ) ){
           echo $mensagem->mensagemValida( $_SESSION['valida'] );
@@ -42,8 +42,8 @@
                 ?>
               </h4>
               <div class="btn d-flex justify-content-center">
-                <button type="button" class="btn btn-success text-white m-1" onclick="enviaFormulario()" data-toggle="modal" data-target="#voto_<?php echo $candidato->id;?>">VOTAR</button>  
-                <div class="modal fade"  id="voto_<?php echo $candidato->id;?>">
+                <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#form-voto">VOTAR</button>  
+                <div class="modal fade" id="form-voto">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -51,14 +51,15 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                       </div>                
                       <div class="modal-body">
-                        <form method="POST" id="form_candidato_<?php echo $candidato->id;?>"  action="computavoto.php">
-                          <input type="hidden" class="form-control" placeholder="Digite o nome do ELEITOR:" name="candidato" value="<?php echo $candidato->id;?>">
-                          <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" name="nomeeleitor">
+                      <form >
+                          <input type="hidden" class="form-control" placeholder="Digite o nome do ELEITOR:" id="candidato" name="candidato" value="<?php echo $candidato->id;?>">
+                          <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" id="nomeeleitor" name="nomeeleitor">
                           <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
+				                  <input type="hidden" id="metodo" value="formulario-ajax" />
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" onclick="enviaFormulario(<?php echo $candidato->id;?>)" class="btn btn-success" name="finalizar" value="finalizar">FINALIZAR</button>
+                        <button type="submit" class="btn btn-success" name="enviar" value="finalizar">FINALIZAR</button>
                         <button type="button" class="btn btn-warning ml-2" data-dismiss="modal">CANCELAR</button>
                       </div>
                     </div>
@@ -68,5 +69,12 @@
             </div>
           </div>
         <?php endforeach;?>
+                        
+
+		
+		
+		<!-- JAVASCRIPT -->
+			<script src="../javascript/script.js"></script>
+		<!-- JAVASCRIPT -->
 </body>
 </html>

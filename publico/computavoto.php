@@ -2,15 +2,7 @@
   session_start();
 
   require "../vendor/autoload.php";
-
-  /*
-  use Carlos\Voto\App\Eleitor;
-  use Carlos\Voto\App\Conexao;
-  use Carlos\Voto\App\Voto;
-  use Carlos\Voto\App\Candidato_voto;
-  */
-  // CandidatoVoto
-
+ 
   use Carlos\Voto\App\{ 
                         Eleitor, 
                         Conexao, 
@@ -25,18 +17,6 @@
       $candidato = $_POST['candidato'];
 
       if ( !empty( $nomeeleitor ) && !empty( $titulo ) ){
-
-        /*
-        $eleitor = new Eleitor ( $nomeeleitor, $titulo );
-        $eleitor->insereEleitor( array( $eleitor->nome, $eleitor->documento ) );
-        */
-
-        /* modo 1
-        $eleitor = new Eleitor ( $nomeeleitor, $titulo );
-        $eleitor->insereEleitor();
-        */
-
-        // modo 2
 
         $eleitor = (new Eleitor ( $nomeeleitor, $titulo ))->insereEleitor();
         
