@@ -19,30 +19,49 @@
                 <?php echo $candidato->nome;?>
               </h1><br/>
               <h4 class="d-flex justify-content-center text-body text-uppercase mt-4">
-                <?php
-                  echo $candidato->id;
-                ?>
+                <?php echo $candidato->id;?>
               </h4>
+
               <div class="btn d-flex justify-content-center">
-                <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" data-target="#form-voto<?php echo $candidato->id;?>">VOTAR</button>  
-                <div class="modal fade form-voto" id="form-voto<?php echo $candidato->id;?>">
+                <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" onclick="enviar(<?php echo $candidato->id;?>)" data-target="#form">VOTAR</button>  
+                <div class="modal fade" id="form">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h4 class="modal-title">INFORME O ELEITOR:</h4>
-                        <button type="button" class="close">&times;</button>
-                      </div>                
+                        <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+                      </div>               
                       <div class="modal-body">
-                        <form >
-                        <?php echo $candidato->id;?>
+                        <form>
                           <input type="hidden" class="form-control" id="candidato" value="<?php echo $candidato->id;?>">
-                          <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" id="nomeeleitor" name="nomeeleitor">
-                          <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" name="titulo">
-				                  <input type="hidden" id="metodo" value="formulario-ajax" />
-                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-success" id="finalizar">FINALIZAR</button>
-                              <button type="button" class="btn btn-warning ml-2" id="cancelar">CANCELAR</button>
-                            </div>
+                          <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" id="nomeeleitor">
+                          <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" id="titulo" name="titulo">
+                        </form>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form-voto" id="confirma">CONFIRMAR</button>
+                        <button type="button" class="btn btn-warning ml-2" id="cancelar">CANCELAR</button>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+               <div class="modal fade form_voto" id="form-voto">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">CONFIRMAR VOTO:</h4>
+                        <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+                      </div>               
+                      <div class="modal-body">
+                          <div id="mostraeleitor"></div>
+                          <div id="mostratitulo"></div>
+                          <div id="mostracandidato"></div>
+                          <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-success" name="finalizar" id="finalizar">FINALIZAR</button>
+                            <button type="button" class="btn btn-warning ml-2" data-dismiss="modal">CANCELAR</button>
+                          </div>
                         </form>
                       </div>
                     </div>
@@ -52,9 +71,10 @@
             </div>
           </div>
         <?php endforeach;?>
+
+    
 		
-		<!-- JAVASCRIPT -->
 			<script src="../javascript/script.js"></script>
-		<!-- JAVASCRIPT -->
+		
 </body>
 </html>

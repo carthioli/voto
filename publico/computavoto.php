@@ -1,10 +1,17 @@
 <?php
-	$html = "Nome: " . $_POST['nome'];
-  $html .= "\n";
-  $html .= 'Candidato: ' . $_POST['candidato'];
-  $html .= "\n";
-  
-  echo $html;
+  if(isset($_POST['nome']) && 
+     isset($_POST['candidato']) &&
+     !empty($_POST['nome']) &&
+     !empty($_POST['candidato']) &&
+     !empty($_POST['titulo'])){
+
+      $html = "Nome: " . $_POST['nome'];
+      $html .= "\n";
+      
+      $html .= 'Candidato: ' . $_POST['candidato'];
+      $html .= "\n";
+      echo $html;
+  }
 
   session_start();
 
@@ -33,8 +40,7 @@
         }
         else
         {
-        /*  header ( 'location: formulario.php' );
-          $_SESSION['erro'] = 1; */ 
+          $_SESSION['erro'] = 1; 
         }  
         if ( $voto ) 
         {
@@ -42,27 +48,22 @@
         }
         else
         {
-        /*  header ( 'location: formulario.php' );
-          $_SESSION['erro'] = 1;  */
+          $_SESSION['erro'] = 1; 
         }
         if ( $candidatoVoto ) 
         {
-         /* header ( 'location: formulario.php' );
-          $_SESSION['valida'] = 1;*/
+          $_SESSION['valida'] = 1;
         }
         else
         {
-         /* header ( 'location: formulario.php' );
-          $_SESSION['erro'] = 1; */
+          $_SESSION['erro'] = 1;
         }
     
       }else{
-        /* header ( 'location: formulario.php' );
-         $_SESSION['erro'] = 2;       */
+         $_SESSION['erro'] = 2;      
       }
       
     }else{
-     /* $_SESSION['erro'] = 2;
-      header( 'location: formulario.php' );*/
+      $_SESSION['erro'] = 2;
     }
 ?>    

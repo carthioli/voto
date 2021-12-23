@@ -20,8 +20,8 @@
         public function __construct(  $host = 'localhost', 
                                       $port = "5432",
                                       $dbname = "eleicao",
-                                      $user = "postgres",
-                                      $password = "@1234bf"  ){
+                                      $user = "carlos",
+                                      $password = "12345"  ){
 
           $this->host = $host;
           $this->dbname = $dbname;

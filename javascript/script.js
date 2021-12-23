@@ -1,45 +1,54 @@
+	$('#confirma').click(function(){
+		
+		
+		var eleitor = $('#nomeeleitor').val()
+		var titulo = $('#titulo').val()
+		var candidato = $('#candidato').val()
 
-	$('.form-voto').submit(function(e){
-		e.preventDefault();
-
+		document.getElementById("mostraeleitor").innerHTML = "Eleitor: " + eleitor;
+		document.getElementById("mostratitulo").innerHTML = "Titulo: " + titulo;
+		document.getElementById("mostracandidato").innerHTML = "Candidato: " + candidato;
+	});
+	$('#finalizar').click(function(){
+		
 		if($('#finalizar').val() == 'Finalizar...'){
 			return(false);
 		}
-		
+
 		$.ajax({
-			url: 'valida-form.php',
+			url: 'computavoto.php',
 			type: 'post',
 			dataType: 'html',
 			data: {
-				'metodo': $('#metodo').val(),
-				'nome': $('#nomeeleitor').val(),
-				'titulo': $('#titulo').val(),
-        'candidato': $('#candidato').val()
+				'metodo' : $('#metodo').val(),
+					'nome' : $('#nomeeleitor').val(),
+				'titulo' : $('#titulo').val(),
+				'candidato' : $('#candidato').val()
 			}
-
 		}).success(function(data){
 			
-			result = window.confirm(data);
-			
-			if (result == true) {
-					$('#cancelar').click();			
-			}else{
-				document.location.reload(true);
-			}
-
-			$('#metodo').val('formulario-ajax');
-			$('#nomeeleitor').val('');
-			$('#titulo').val('');
-      $('#candidato').val('');
-
-			console.log(data)
 		});
+		$('#close').click()
+		$('#finalizar').attr('data-dismiss', 'modal')
+	})
+
+	$('#close').click(function(){
+		$('#metodo').val('formulario-ajax');
+		$('#nomeeleitor').val('');
+		$('#titulo').val('');
+     	$('#candidato').val('');
+		$('#close').attr('data-dismiss', 'modal')
 	});
-	
-	$('.close').click(function(e){
-		$('.close').attr('data-dismiss', 'modal')
+
+	$('#cancelar').click(function(){
+
+		$('#metodo').val('formulario-ajax');
+		$('#nomeeleitor').val('');
+		$('#titulo').val('');
+     	$('#candidato').val('');
+		$('#cancelar').attr('data-dismiss', 'modal')
+
 	});
-	$('#cancelar').click(function(e){
-			$('#cancelar').attr('data-dismiss', 'modal')
-	});
-	
+	function enviar( id_candidato ){
+		$('#candidato').val(id_candidato)
+	}
