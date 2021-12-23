@@ -11,6 +11,26 @@
   <title>Votação</title>
 </head>
 <body>
+      <p class="text-center mt-5 text-success">
+       <?php
+        if ( isset( $_SESSION['valida'] ) ){
+          $mensagem->mensagemValida( $_SESSION['valida'] );
+          unset ($_SESSION['valida']);
+          unset ($_SESSION['erro']);
+          echo $mensagem;
+        }
+      ?>
+      </p>
+      <p class="text-center mt-5 text-danger">
+       <?php
+        if ( isset( $_SESSION['erro'] ) ){
+          $mensagem->mensagemErro( $_SESSION['erro'] );
+          unset ($_SESSION['erro']);
+          unset ($_SESSION['valida']);
+          echo $mensagem;
+        }
+      ?>
+      </p>
       <?php
       foreach( $candidatos as $candidato ):?>
           <div class="container">      

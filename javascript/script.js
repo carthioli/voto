@@ -14,7 +14,6 @@
 		if($('#finalizar').val() == 'Finalizar...'){
 			return(false);
 		}
-
 		$.ajax({
 			url: 'computavoto.php',
 			type: 'post',
@@ -28,6 +27,7 @@
 		}).success(function(data){
 			
 		});
+
 		$('#close').click()
 		$('#finalizar').attr('data-dismiss', 'modal')
 	})

@@ -1,24 +1,10 @@
 <?php
-  if(isset($_POST['nome']) && 
-     isset($_POST['candidato']) &&
-     !empty($_POST['nome']) &&
-     !empty($_POST['candidato']) &&
-     !empty($_POST['titulo'])){
-
-      $html = "Nome: " . $_POST['nome'];
-      $html .= "\n";
-      
-      $html .= 'Candidato: ' . $_POST['candidato'];
-      $html .= "\n";
-      echo $html;
-  }
 
   session_start();
 
   require "../vendor/autoload.php";
  
-  use Carlos\Voto\App\{ 
-                        Eleitor, 
+  use Carlos\Voto\App\{ Eleitor, 
                         Conexao, 
                         Voto, 
                         Candidato_voto as CandidatoVoto
@@ -40,7 +26,8 @@
         }
         else
         {
-          $_SESSION['erro'] = 1; 
+          header ( 'location: formulario.php' );
+          $_SESSION['erro'] = 1;  
         }  
         if ( $voto ) 
         {
@@ -48,22 +35,27 @@
         }
         else
         {
-          $_SESSION['erro'] = 1; 
+          header ( 'location: formulario.php' );
+          $_SESSION['erro'] = 1;  
         }
         if ( $candidatoVoto ) 
         {
+          header ( 'location: formulario.php' );
           $_SESSION['valida'] = 1;
         }
         else
         {
-          $_SESSION['erro'] = 1;
+          header ( 'location: formulario.php' );
+          $_SESSION['erro'] = 1; 
         }
     
       }else{
-         $_SESSION['erro'] = 2;      
+         header ( 'location: formulario.php' );
+         $_SESSION['erro'] = 2;       
       }
       
     }else{
       $_SESSION['erro'] = 2;
+      header( 'location: formulario.php' );
     }
 ?>    
