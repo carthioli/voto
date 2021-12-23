@@ -4,11 +4,13 @@
 
   require "../vendor/autoload.php";
  
-  use Carlos\Voto\App\{ Eleitor, 
+  use Carlos\Voto\App\{ 
+                        Eleitor, 
                         Conexao, 
                         Voto, 
                         Candidato_voto as CandidatoVoto
                       };
+  use Carlos\Voto\Mensagem\{Mensagem};                    
     
     if( isset( $_POST['nome'] ) && isset( $_POST['titulo'] ) ){
 
@@ -26,8 +28,9 @@
         }
         else
         {
-          header ( 'location: formulario.php' );
-          $_SESSION['erro'] = 1;  
+          $msg = (new Mensagem)->mensagemErro(1);
+          echo $msg;
+          exit;
         }  
         if ( $voto ) 
         {
@@ -35,27 +38,27 @@
         }
         else
         {
-          header ( 'location: formulario.php' );
-          $_SESSION['erro'] = 1;  
+          $msg = (new Mensagem)->mensagemErro(1);
+          echo $msg;
         }
         if ( $candidatoVoto ) 
         {
-          header ( 'location: formulario.php' );
-          $_SESSION['valida'] = 1;
+          $msg = (new Mensagem)->mensagemValida(1);
+          echo $msg;
         }
         else
         {
-          header ( 'location: formulario.php' );
-          $_SESSION['erro'] = 1; 
+          $msg = (new Mensagem)->mensagemErro(1);
+          echo $msg;
         }
     
       }else{
-         header ( 'location: formulario.php' );
-         $_SESSION['erro'] = 2;       
+        $msg = (new Mensagem)->mensagemErro(2);
+        echo $msg;
       }
       
     }else{
-      $_SESSION['erro'] = 2;
-      header( 'location: formulario.php' );
+      $msg = (new Mensagem)->mensagemErro(2);
+      echo $msg;
     }
 ?>    

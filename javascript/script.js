@@ -1,6 +1,5 @@
 	$('#confirma').click(function(){
 		
-		
 		var eleitor = $('#nomeeleitor').val()
 		var titulo = $('#titulo').val()
 		var candidato = $('#candidato').val()
@@ -25,11 +24,20 @@
 				'candidato' : $('#candidato').val()
 			}
 		}).success(function(data){
+			if(data){
+				$('#mostrar').attr('class', 'd-flex justify-content-center text-success')
+			}else{
+				$('#mostrar').attr('class', 'd-flex justify-content-center text-danger')
+			}
+			document.getElementById("mostrar").innerHTML = data;
 			
-		});
 
+				
+		});
 		$('#close').click()
 		$('#finalizar').attr('data-dismiss', 'modal')
+		
+		
 	})
 
 	$('#close').click(function(){
