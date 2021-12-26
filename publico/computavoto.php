@@ -25,6 +25,7 @@
         if ( $eleitor ) 
         {
           $voto = ( new Voto ( $eleitor ) )->insereVoto();
+        
         }
         else
         {

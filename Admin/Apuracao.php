@@ -12,10 +12,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link hel="stylesheet" href="css/style.css">
-  <title>Apuração</title>
+    <title>Apuração</title>
   <style>
-    
     .container{
       height: 50px
     }
@@ -52,8 +50,9 @@
               <h6 class="text-left text-white ">QUANTIDADE DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white mt-1 nomeapuracao"><?php echo $resultado; ?></p><br>
-              <p class="text-white mt-1 qntvoto"><?php echo $candidatovoto; ?></p>
+              <p class="text-white mt-1 nomeapuracao"><?php if ( isset($resultado['nome']) ){echo $resultado['nome'];}else{echo "INDEFINIDO";};?>
+                                                            </p><br>
+              <p class="text-white mt-1 qntvoto"><?php if ( isset($resultado['total_votos']) ){echo $resultado['total_votos'];}else{echo "INDEFINIDO";};?></p>
             </div>  
           </div>
         </div>
@@ -68,9 +67,9 @@
               <h6 class="text-left text-white mt-4">TOTAL DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white bncvoto"><?php echo $totalbranco; ?></p>
-              <p class="text-white"><?php echo $totalnao; ?></p>
-              <p class="text-white"><?php echo $totalvoto;?></p>
+              <p class="text-white bncvoto"><?php if ( isset($totalbranco['total_votos']) ){echo $totalbranco['total_votos'];}else{echo "0";}; ?></p>
+              <p class="text-white"><?php if ( isset($totalnulo['total_votos']) ){echo $totalnulo['total_votos'];}else{echo "0";}; ?></p>
+              <p class="text-white"><?php if ( isset($totalvoto['count']) ){echo $totalvoto['count'];}else{echo "0";}; ?></p>
             </div>  
           </div>
         </div>
@@ -78,8 +77,10 @@
     <div class="container d-flex justify-content-center col-6 mt-3">
       <form method="POST" action="apuracao.php">
           <button type="submit" class="btn btn-success text-body" name="atualizar">ATUALIZAR</button>
-          <button type="submit" class="btn btn-danger text-body" name="recomecar">RECOMEÇAR</button>
       </form>
+      <form method="POST" action="recomecar.php">
+          <button type="submit" class="btn btn-danger text-body" name="recomecar">RECOMEÇAR</button>
+      </form>      
     </div>  
   </div>  
   </main>  

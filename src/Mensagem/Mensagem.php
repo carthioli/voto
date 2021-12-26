@@ -21,7 +21,10 @@
                     break;
                 case 2:
                     return "Campos obrigatórios não preenciados*";
-                    break;    
+                    break; 
+                case 3:
+                    return "Voto já realizado*";
+                    break;            
             }
         }
     }
