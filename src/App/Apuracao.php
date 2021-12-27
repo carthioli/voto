@@ -23,7 +23,7 @@
                              FROM candidato AS ca  
                              JOIN candidato_voto AS cv ON cv.id_candidato = ca.id
                              GROUP BY ca.id
-                             ORDER BY 1 ASC");
+                             ORDER BY id_candidato desc");
             $lista = [];
 
             while( $result = pg_fetch_assoc( $query ) ){
@@ -35,10 +35,12 @@
         }
         public function vencedor()
         {
-          $query = pg_query("SELECT MAX (id) 
-                             FROM (SELECT id_candidato,COUNT(id_candidato) id 
-                             FROM candidato_voto 
-                             GROUP BY id_candidato);");
+          $query = pg_query("SELECT ca.id, ca.nome, count(id_candidato) AS id_candidato
+                             FROM candidato AS ca  
+                             JOIN candidato_voto AS cv ON cv.id_candidato = ca.id
+                             GROUP BY ca.id
+                             ORDER BY id_candidato DESC
+                             LIMIT 1");
             $lista = [];
 
             while( $result = pg_fetch_assoc( $query ) ){
