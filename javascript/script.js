@@ -58,6 +58,10 @@
 		$('#cancelar').attr('data-dismiss', 'modal')
 
 	});
+	$(document).ready(function(){
+		$("#titulo").mask("999.999.999-99");	
+	});
+	
 	function enviar( id_candidato ){
 		$('#candidato').val(id_candidato)
 	}

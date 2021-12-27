@@ -36,7 +36,7 @@
                         <form>
                           <input type="hidden" class="form-control" id="candidato" value="<?php echo $candidato->id;?>">
                           <input type="text" class="form-control" placeholder="Digite o nome do ELEITOR:" id="nomeeleitor">
-                          <input type="text" class="form-control" placeholder="Digite o TÍTULO do ELEITOR:" id="titulo" name="titulo">
+                          <input type="text" class="form-control cpf" placeholder="Digite o TÍTULO do ELEITOR:" id="titulo" name="titulo">
                         </form>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form-voto" id="confirma">CONFIRMAR</button>
