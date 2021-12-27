@@ -30,7 +30,8 @@
         else
         {
           $msg = (new Mensagem)->mensagemErro(1);
-          echo $msg;
+          $valida = true;
+          echo json_encode(array('status' => $valida, 'message' => $msg ));
           exit;
         }  
         if ( $voto ) 
@@ -40,26 +41,31 @@
         else
         {
           $msg = (new Mensagem)->mensagemErro(1);
-          echo $msg;
+          $valida = true;
+          echo json_encode(array('status' => $valida, 'message' => $msg ));
         }
         if ( $candidatoVoto ) 
         {
           $msg = (new Mensagem)->mensagemValida(1);
-          echo $msg;
+          $valida = false;
+          echo json_encode(array('status' => $valida, 'message' => $msg ));
         }
         else
         {
           $msg = (new Mensagem)->mensagemErro(1);
-          echo $msg;
+          $valida = true;
+          echo json_encode(array('status' => $valida, 'message' => $msg ));
         }
     
       }else{
         $msg = (new Mensagem)->mensagemErro(2);
-        echo $msg;
+        $valida = true;
+          echo json_encode(array('status' => $valida, 'message' => $msg ));
       }
       
     }else{
       $msg = (new Mensagem)->mensagemErro(2);
-      echo $msg;
+      $valida = true;
+          echo json_encode(array('status' => $valida, 'message' => $msg ));
     }
 ?>    

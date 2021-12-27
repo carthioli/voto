@@ -17,11 +17,11 @@
 
         private $link = null;
 
-        public function __construct(  $host = 'localhost', 
-                                      $port = "2408",
+        public function __construct(  $host = '127.0.0.1', 
+                                      $port = "5432",
                                       $dbname = "eleicao",
-                                      $user = "postgres",
-                                      $password = "24082015"  ){
+                                      $user = "carlos",
+                                      $password = "12345"  ){
 
           $this->host = $host;
           $this->dbname = $dbname;

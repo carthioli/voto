@@ -16,7 +16,7 @@
 		$.ajax({
 			url: 'computavoto.php',
 			type: 'post',
-			dataType: 'html',
+			dataType: 'json',
 			data: {
 				'metodo' : $('#metodo').val(),
 					'nome' : $('#nomeeleitor').val(),
@@ -24,12 +24,13 @@
 				'candidato' : $('#candidato').val()
 			}
 		}).success(function(data){
-			if(data){
+			if(data.status == false){
 				$('#mostrar').attr('class', 'd-flex justify-content-center text-success')
 			}else{
 				$('#mostrar').attr('class', 'd-flex justify-content-center text-danger')
 			}
-			document.getElementById("mostrar").innerHTML = data;
+			console.log(data);
+			document.getElementById("mostrar").innerHTML = data.message;
 			
 
 				
