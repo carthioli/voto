@@ -1,5 +1,14 @@
 <?php
     require "../src/App/Apuracao.php";
+    require "../vendor/autoload.php";
+
+    use Carlos\Voto\App\Apura;
+
+    $vencedor = (new Apura)->vencedor();
+    $candidatos = (new Apura)->totalVotoCandidatos();
+    $total = (new Apura)->totalVotos();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,21 +21,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
     <title>Apuração</title>
-  <style>
-    .container{
-      height: 50px
-    }
-    .apura{
-      height: 455px;
-    }
-    .candidato{
-      height: 200px
-    }
-    .outro{
-      height: 115px
-    }
-  </style>  
 </head>
 <body>
   <header>
@@ -35,14 +31,30 @@
   <div class="container-fluid bg-secondary mb-5">
     <h1 class="d-flex justify-content-center text-body">APURAÇÃO</h1>
   </div>  
-  <div class="container bg-secondary p-1 rounded col-6 apura">
-    <div class="container bg-dark rounded-top mt-2 col-6">
-      <h3 class="text-center mt-3 text-success">MAIS VOTADO!</h3>
+  <div class="float-left col-3 h-50 mt-0">
+  <?php foreach( $candidatos as $candidato ):?>
+    <p class="d-flex justify-content-center text-body text-uppercase mt-0">
+      <div class="border w-50 mb-0">
+        <label class="mr-5">Candidato:&nbsp;</label>
+        <?php echo $candidato['nome'];?>
+
+        <label class="mr-5">Total votos:</label>
+        <?php echo $candidato['id_candidato'];?>
+      </div>
+      
+  </p>
+  <?php endforeach;?>
+  </div>
+  <div class="container bg-light border p-1 rounded col-6 apura">
+    
+    <div class="container bg-secondary rounded-top mt-2 col-6">
+      <h3 class="text-center mt-3 text-body">MAIS VOTADO!</h3>
     </div>  
-    <div class="container bg-dark col-6 candidato">
+    <div class="container bg-secondary col-6 candidato">
       <div class="d-flex justify-content-center h-50">
         <img width="70px" height="70px" class="p-1 mt-3 bg-info rounded-circle">
       </div>
+      
         <div class="container">
           <div class="row">
             <div class="col-2">  
@@ -50,26 +62,22 @@
               <h6 class="text-left text-white ">QUANTIDADE DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-white mt-1 nomeapuracao"><?php if ( isset($resultado['nome']) ){echo $resultado['nome'];}else{echo "INDEFINIDO";};?>
+              <p class="text-white mt-1 nomeapuracao"><?php if ( isset($vencedor['nome']) ){echo $vencedor['nome'];}else{echo "INDEFINIDO";};?>
                                                             </p><br>
-              <p class="text-white mt-1 qntvoto"><?php if ( isset($resultado['total_votos']) ){echo $resultado['total_votos'];}else{echo "INDEFINIDO";};?></p>
+              <p class="text-white mt-1 qntvoto"><?php if ( isset($vencedor['id_candidato']) ){echo $vencedor['id_candidato'];}else{echo "INDEFINIDO";};?></p>
             </div>  
           </div>
         </div>
     </div>
-    <div class="container col-6 mt-3 rounded bg-dark outro">
-      <p class="text-center text-danger">OUTROS VOTOS:</p>
+    <div class="container col-6 mt-3 rounded bg-secondary outro">
+      <p class="text-center text-body mt-4">OUTROS VOTOS:</p>
         <div class="container mt-3">
-          <div class="row">
+          <div class="row ">
             <div class="col-2 ">  
-              <h6 class="text-left text-white ">VOTOS BRANCO:</h6>
-              <h6 class="text-left text-white mt-4">NÃO VOTOU:</h6>
-              <h6 class="text-left text-white mt-4">TOTAL DE VOTOS:</h6>
+              <h5 class="text-left text-white mt-4">TOTAL DE VOTOS:</h5>
             </div>
-            <div class="col-4 mt-1">
-              <p class="text-white bncvoto"><?php if ( isset($totalbranco['total_votos']) ){echo $totalbranco['total_votos'];}else{echo "0";}; ?></p>
-              <p class="text-white"><?php if ( isset($totalnulo['total_votos']) ){echo $totalnulo['total_votos'];}else{echo "0";}; ?></p>
-              <p class="text-white"><?php if ( isset($totalvoto['count']) ){echo $totalvoto['count'];}else{echo "0";}; ?></p>
+            <div class="col-4">
+              <h4 class="text-white mt-3"><?php if ( isset($total['id_candidato']) ){echo $total['id_candidato'];}else{echo "0";}; ?></h4>
             </div>  
           </div>
         </div>

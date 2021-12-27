@@ -2,28 +2,53 @@
       namespace Carlos\Voto\App;
 
       use Carlos\Voto\App\Conexao;
+      use Carlos\Voto\App\Candidato_voto;
         
-      $link = new Conexao;
-         /*$query = pg_query("SELECT max(total_votos), total_votos, id_candidato, nome
-                            FROM resultado 
-                            JOIN candidato on id = resultado.id_candidato
-                            GROUP BY total_votos, id_candidato, nome  
-                            order by 1 desc
-                          ");
-     $querybranco=pg_query("SELECT total_votos
-                            FROM resultado
-                            WHERE id_candidato = 4
-                          ");*/
-     $querynulo = pg_query("SELECT id
-                            FROM candidato
-                            WHERE nome = 'branco'
-                          ");
-      $querytotal=pg_query("SELECT count(id_candidato) 
-                            FROM candidato_voto;");       
+      class Apura
+      {
+        public function __construct()
+        {
+          $link = ( new Conexao )->conecta();
+        }
+        public function totalVotos()
+        {
+          $query = pg_query("SELECT count(id_candidato) AS id_candidato
+                             FROM candidato_voto");
+          $result = pg_fetch_assoc( $query );
+          return $result;                   
+        }
+        public function totalVotoCandidatos()
+        {
+          $query = pg_query("SELECT ca.id, ca.nome, count(id_candidato) AS id_candidato
+                             FROM candidato AS ca  
+                             JOIN candidato_voto AS cv ON cv.id_candidato = ca.id
+                             GROUP BY ca.id
+                             ORDER BY 1 ASC");
+            $lista = [];
 
-      $resultado = pg_fetch_assoc($query); 
-      $totalbranco = pg_fetch_assoc($querybranco); 
-      $totalnulo = pg_fetch_assoc($querynulo);
-      $totalvoto = pg_fetch_assoc($querytotal);  
+            while( $result = pg_fetch_assoc( $query ) ){
+
+                $lista[] = ['id' => $result['id'], 'nome' => $result['nome'], 'id_candidato' => $result['id_candidato']]; 
+
+            }
+         return $lista;                 
+        }
+        public function vencedor()
+        {
+          $query = pg_query("SELECT MAX (id) 
+                             FROM (SELECT id_candidato,COUNT(id_candidato) id 
+                             FROM candidato_voto 
+                             GROUP BY id_candidato);");
+            $lista = [];
+
+            while( $result = pg_fetch_assoc( $query ) ){
+
+                $lista = ['nome' => $result['nome'], 'id_candidato' => $result['id_candidato']]; 
+
+            }
+         return $lista;   
+        }
+      }
+
   
 ?>

@@ -61,7 +61,7 @@
                           <div id="mostracandidato"></div>
                           <div class="modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-success" name="finalizar" id="finalizar">FINALIZAR</button>
-                            <button type="button" class="btn btn-warning ml-2" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-danger ml-2" data-dismiss="modal">CANCELAR</button>
                           </div>
                         </form>
                       </div>
