@@ -4,6 +4,7 @@
       use Carlos\Voto\App\Conexao;
       use Carlos\Voto\App\Candidato_voto;
         
+      
       class Apura
       {
         public function __construct()
@@ -15,7 +16,11 @@
           $query = pg_query("SELECT count(id_candidato) AS id_candidato
                              FROM candidato_voto");
           $result = pg_fetch_assoc( $query );
-          return $result;                   
+          
+          if( isset( $_POST['busca'] ) ){
+            echo json_encode(array('result' => $result['id_candidato']) ); 
+          }
+                                          
         }
         public function totalVotoCandidatos()
         {
@@ -33,7 +38,7 @@
             }
          return $lista;                 
         }
-        public function vencedor()
+        public function ultimoMaisVotado()
         {
           $query = pg_query("SELECT ca.id, ca.nome, count(id_candidato) AS id_candidato
                              FROM candidato AS ca  

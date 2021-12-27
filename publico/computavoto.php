@@ -12,7 +12,10 @@
                       };
   use Carlos\Voto\Mensagem\{Mensagem};                    
     
-    if( isset( $_POST['nome'] ) && isset( $_POST['titulo'] ) ){
+    if( isset( $_POST['nome'] ) 
+        && isset( $_POST['titulo'] )
+          && ctype_alpha( $_POST['nome'] )
+            && is_numeric( $_POST['titulo'] )){
 
       $nomeeleitor = $_POST['nome'];
       $titulo = $_POST['titulo'];

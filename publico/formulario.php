@@ -11,9 +11,11 @@
   <title>Votação</title>
 </head>
 <body>
+    <div class="container-fluid bg-light border-bottom mb-5">
+      <h1 class="d-flex justify-content-center text-body">VOTAÇÃO</h1>
+    </div>
       <div class="d-flex justify-content-center" id="mostrar"></div>
-      <?php
-      foreach( $candidatos as $candidato ):?>
+      <?php foreach( $candidatos as $candidato ):?>
           <div class="container">      
             <div class="p-2 border float-left w-25 ml-5 mt-2">
               <h1 class="d-flex justify-content-center text-body text-uppercase mt-4">

@@ -5,35 +5,29 @@
 
     use Carlos\Voto\App\Apura;
 
-    $vencedor = (new Apura)->vencedor();
+    $vencedor = (new Apura)->ultimoMaisVotado();
     $candidatos = (new Apura)->totalVotoCandidatos();
-    $total = (new Apura)->totalVotos();
+    $total = (new Apura)->totalVotos();  
+    
 ?>
-
     <title>Apuração</title>
 </head>
 <body>
-  <header>
-  </header>
   <main>
     <div class="container-fluid bg-light border-bottom mb-5">
       <h1 class="d-flex justify-content-center text-body">APURAÇÃO</h1>
     </div>  
-    
     <div class="float-left col-2 ml-5 border">
-    <?php foreach( $candidatos as $candidato ):?>
-      <div class="d-flex justify-content-center border-bottom mt-3 w-100 ">
-      <p class="text-body mt-2 text-uppercase">
-        
-          <label class="">Candidato:&nbsp;</label>
-          <?php echo $candidato['nome'];?>
-
-          <label class="">Total votos:</label>
-          <?php echo $candidato['id_candidato'];?>
-       
-    </p>
-    </div>
-    <?php endforeach;?>
+      <?php foreach( $candidatos as $candidato ):?>
+        <div class="d-flex justify-content-center border-bottom mt-3 w-100 ">
+          <p class="text-body mt-2 text-uppercase">
+            <label class="">Candidato:&nbsp;</label>
+            <?php echo $candidato['nome'];?>
+            <label class="">Total votos:</label>
+            <?php echo $candidato['id_candidato'];?>
+          </p>
+      </div>
+      <?php endforeach;?>
     </div>
     <div class="container bg-light border-left border-top border-right rounded-top mt-2 col-3">
       <h3 class="text-center mt-3 text-body">MAIS VOTADO!</h3>
@@ -66,7 +60,7 @@
               <h5 class="text-left text-body mt-4">TOTAL DE VOTOS:</h5>
             </div>
             <div class="col-4">
-              <h4 class="text-body mt-3"><?php if ( isset($total['id_candidato']) ){echo $total['id_candidato'];}else{echo "0";}; ?></h4>
+              <h4 class="text-body mt-3" id="total"><?php if ( isset($total['id_candidato']) ){echo $total['id_candidato'];}else{echo "0";}; ?></h4>
             </div>  
           </div>
         </div>
@@ -74,14 +68,14 @@
     <div class="container rounded-top mt-2 col-3">
       <div class="d-flex justify-content-center mt-2">
         <div class="p-1">
-          <form method="POST" action="apuracao.php">
-              <button type="submit" class="btn btn-success text-body" name="atualizar">ATUALIZAR</button>
+          <form>
+            <button type="button" id="verificar" class="btn btn-success text-body">VERIFICAR</button>
           </form>
-          </div>
+        </div>
       </div>     
     </div>  
-   
   </main>  
+  <script src="../javascript/script.js"></script>
   <footer>
   </footer>
 </body>

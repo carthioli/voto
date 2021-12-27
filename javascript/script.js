@@ -19,9 +19,9 @@
 			dataType: 'json',
 			data: {
 				'metodo' : $('#metodo').val(),
-					'nome' : $('#nomeeleitor').val(),
+			      'nome' : $('#nomeeleitor').val(),
 				'titulo' : $('#titulo').val(),
-				'candidato' : $('#candidato').val()
+			 'candidato' : $('#candidato').val()
 			}
 		}).success(function(data){
 			if(data.status == false){
@@ -52,6 +52,22 @@
      	$('#candidato').val('');
 		$('#cancelar').attr('data-dismiss', 'modal')
 
+	});
+	$('#verificar').click(function(){
+		$.ajax({
+			url: 'Apuracao.php',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				'busca' : true 
+			}
+		}).success(function(data){
+			document.getElementById('total').innerHTML = data.result
+			document.getElementById('verificar').innerHTML = "ATUALIZAR"
+					
+		});
+				
+		
 	});
 	function enviar( id_candidato ){
 		$('#candidato').val(id_candidato)

@@ -20,7 +20,7 @@
                     return "Ocorreu um problema: Voto não realizado";
                     break;
                 case 2:
-                    return "Campos obrigatórios não preenciados*";
+                    return "Campos obrigatórios inválidos ou não preenchidos*";
                     break; 
                 case 3:
                     return "Voto já realizado*";
