@@ -4,6 +4,9 @@
     require "../header/headerA.php";
 
     use Carlos\Voto\App\Apura;
+    if( isset( $_POST['busca'] ) ){
+      echo json_encode(array('busca' => 13 )); 
+    }
 
     $vencedor = (new Apura)->ultimoMaisVotado();
     $candidatos = (new Apura)->totalVotoCandidatos();

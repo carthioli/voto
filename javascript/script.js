@@ -55,20 +55,23 @@
 	});
 	$('#verificar').click(function(){
 		$.ajax({
-			url: 'Apuracao.php',
+			url: '../src/App/Apuracao.php',
 			type: 'post',
 			dataType: 'json',
 			data: {
-				'busca' : true 
+				'busca' : true
 			}
 		}).success(function(data){
-			document.getElementById('total').innerHTML = data.result
+			console.log(data);
+			document.getElementById('total').innerHTML = data.busca
 			document.getElementById('verificar').innerHTML = "ATUALIZAR"
-					
+			
 		});
+		console.log(data);
 				
 		
-	});
+	});  
+	
 	function enviar( id_candidato ){
 		$('#candidato').val(id_candidato)
 	}

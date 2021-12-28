@@ -5,6 +5,7 @@
       use Carlos\Voto\App\Candidato_voto;
         
       
+
       class Apura
       {
         public function __construct()
@@ -17,9 +18,7 @@
                              FROM candidato_voto");
           $result = pg_fetch_assoc( $query );
           
-          if( isset( $_POST['busca'] ) ){
-            echo json_encode(array('result' => $result['id_candidato']) ); 
-          }
+          
                                           
         }
         public function totalVotoCandidatos()
