@@ -55,23 +55,30 @@
 	});
 	$('#verificar').click(function(){
 		$.ajax({
-			url: '../src/App/Apuracao.php',
+			url: 'BuscaApuracao.php',
 			type: 'post',
 			dataType: 'json',
 			data: {
-				'busca' : true
+				'busca' : 'aa'
 			}
 		}).success(function(data){
+			
 			console.log(data);
 			document.getElementById('total').innerHTML = data.busca
+			document.getElementById('nomeMaisVotado').innerHTML = data.ultimoMaisVotado['nome']
+			document.getElementById('qtdVotosMaisVotado').innerHTML = data.ultimoMaisVotado['id_candidato']
+
+			var arr = { 'nome' : data.candidatos['nome'], 'totalVotos' : data.candidatos['totalVotos']}					 
+		
+			document.getElementById('nomeCandidatoVoto').innerHTML = data['nome'][i].total;
+			document.getElementById('resultadoVoto').innerHTML = item.PageName;		
+			
+
 			document.getElementById('verificar').innerHTML = "ATUALIZAR"
 			
 		});
-		console.log(data);
-				
-		
 	});  
-	
+
 	function enviar( id_candidato ){
 		$('#candidato').val(id_candidato)
 	}

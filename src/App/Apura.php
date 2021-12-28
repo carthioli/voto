@@ -1,13 +1,11 @@
 <?php
-      namespace Carlos\Voto\App;
 
-      use Carlos\Voto\App\Conexao;
-      use Carlos\Voto\App\Candidato_voto;
-        
-      
+    namespace Carlos\Voto\App;
 
-      class Apura
-      {
+    use Carlos\Voto\App\Conexao;
+    use Carlos\Voto\App\Candidato_voto;
+
+    class Apura{
         public function __construct()
         {
           $link = ( new Conexao )->conecta();
@@ -17,8 +15,8 @@
           $query = pg_query("SELECT count(id_candidato) AS id_candidato
                              FROM candidato_voto");
           $result = pg_fetch_assoc( $query );
-          
-          
+        
+          return $result['id_candidato'];
                                           
         }
         public function totalVotoCandidatos()
@@ -32,7 +30,7 @@
 
             while( $result = pg_fetch_assoc( $query ) ){
 
-                $lista[] = ['id' => $result['id'], 'nome' => $result['nome'], 'id_candidato' => $result['id_candidato']]; 
+                $lista[] = ['id' => $result['id'], 'nome' => $result['nome'], 'totalVotos' => $result['id_candidato']]; 
 
             }
          return $lista;                 
@@ -54,7 +52,5 @@
             }
          return $lista;   
         }
-      }
-
-  
+    }   
 ?>

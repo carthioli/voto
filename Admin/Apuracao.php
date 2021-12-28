@@ -1,17 +1,7 @@
 <?php
-    require "../src/App/Apuracao.php";
-    require "../vendor/autoload.php";
+
     require "../header/headerA.php";
-
-    use Carlos\Voto\App\Apura;
-    if( isset( $_POST['busca'] ) ){
-      echo json_encode(array('busca' => 13 )); 
-    }
-
-    $vencedor = (new Apura)->ultimoMaisVotado();
-    $candidatos = (new Apura)->totalVotoCandidatos();
-    $total = (new Apura)->totalVotos();  
-    
+ 
 ?>
     <title>Apuração</title>
 </head>
@@ -21,16 +11,14 @@
       <h1 class="d-flex justify-content-center text-body">APURAÇÃO</h1>
     </div>  
     <div class="float-left col-2 ml-5 border">
-      <?php foreach( $candidatos as $candidato ):?>
-        <div class="d-flex justify-content-center border-bottom mt-3 w-100 ">
-          <p class="text-body mt-2 text-uppercase">
-            <label class="">Candidato:&nbsp;</label>
-            <?php echo $candidato['nome'];?>
-            <label class="">Total votos:</label>
-            <?php echo $candidato['id_candidato'];?>
-          </p>
+        <div class="border-bottom mt-3 w-100" id="mostraResultados">
+          
+            <label class="float-left">Candidato:&nbsp;&nbsp;</label>
+            <p class="text-body text-uppercase" id="nomeCandidatoVoto">&nbsp;</p>
+            <label class="float-left">Total votos:&nbsp;&nbsp;</label>
+            <p class="text-body text-uppercase" id="resultadoVoto">&nbsp;</p>
+          
       </div>
-      <?php endforeach;?>
     </div>
     <div class="container bg-light border-left border-top border-right rounded-top mt-2 col-3">
       <h3 class="text-center mt-3 text-body">MAIS VOTADO!</h3>
@@ -48,9 +36,8 @@
               <h6 class="text-left text-body ">QUANTIDADE DE VOTOS:</h6>
             </div>
             <div class="col-4 mt-1">
-              <p class="text-body mt-1 text-uppercase"><?php if ( isset($vencedor['nome']) ){echo $vencedor['nome'];}else{echo "INDEFINIDO";};?>
-                                                            </p><br>
-              <p class="text-body mt-1 qntvoto"><?php if ( isset($vencedor['id_candidato']) ){echo $vencedor['id_candidato'];}else{echo "INDEFINIDO";};?></p>
+              <p class="text-body mt-1 text-uppercase" id="nomeMaisVotado">INDEFINIDO</p><br>
+              <p class="text-body mt-1 qntvoto" id="qtdVotosMaisVotado">INDEFINIDO</p>
             </div>  
           </div>
         </div>
@@ -63,7 +50,7 @@
               <h5 class="text-left text-body mt-4">TOTAL DE VOTOS:</h5>
             </div>
             <div class="col-4">
-              <h4 class="text-body mt-3" id="total"><?php if ( isset($total['id_candidato']) ){echo $total['id_candidato'];}else{echo "0";}; ?></h4>
+              <h4 class="text-body mt-3" id="total">0</h4>
             </div>  
           </div>
         </div>
