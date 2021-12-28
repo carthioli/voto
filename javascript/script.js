@@ -68,12 +68,34 @@
 			document.getElementById('nomeMaisVotado').innerHTML = data.ultimoMaisVotado['nome']
 			document.getElementById('qtdVotosMaisVotado').innerHTML = data.ultimoMaisVotado['id_candidato']
 
-			var arr = { 'nome' : data.candidatos['nome'], 'totalVotos' : data.candidatos['totalVotos']}					 
-		
-			document.getElementById('nomeCandidatoVoto').innerHTML = data['nome'][i].total;
-			document.getElementById('resultadoVoto').innerHTML = item.PageName;		
-			
+			var arr = data.candidatos					 
 
+			let text = "";
+
+			let tbody = document.getElementById('tbody')
+
+        	tbody.innerText = ""
+
+			for (let i = 0; i < 5; i++) {
+				arr.id = (i + 1);
+  				id = arr[i]['id']
+				nome = arr[i]['nome']  
+				totalVotos = arr[i]['totalVotos']
+				
+				  let tr = tbody.insertRow()
+
+				  let td_id = tr.insertCell()
+				  let td_candidato = tr.insertCell()
+				  let td_totalVotos = tr.insertCell()
+	
+				  td_id.innerText = id
+				  td_candidato.innerText = nome
+				  td_totalVotos.innerText = totalVotos
+				  
+			}
+
+			document.getElementById('demo').innerHTML = text;
+			 
 			document.getElementById('verificar').innerHTML = "ATUALIZAR"
 			
 		});

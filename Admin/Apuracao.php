@@ -11,13 +11,17 @@
       <h1 class="d-flex justify-content-center text-body">APURAÇÃO</h1>
     </div>  
     <div class="float-left col-2 ml-5 border">
-        <div class="border-bottom mt-3 w-100" id="mostraResultados">
-          
-            <label class="float-left">Candidato:&nbsp;&nbsp;</label>
-            <p class="text-body text-uppercase" id="nomeCandidatoVoto">&nbsp;</p>
-            <label class="float-left">Total votos:&nbsp;&nbsp;</label>
-            <p class="text-body text-uppercase" id="resultadoVoto">&nbsp;</p>
-          
+      <div class="mt-4 w-100" id="mostraResultados">
+        <table class="table table-striped table-bordered  w-10">
+          <thead>
+            <th class="text-center">ID</th>
+            <th class="text-center">CANDIDATO</th>
+            <th class="text-center">VOTOS</th>
+          </thead>
+          <tbody id="tbody" class="">
+
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="container bg-light border-left border-top border-right rounded-top mt-2 col-3">
@@ -64,6 +68,7 @@
         </div>
       </div>     
     </div>  
+    
   </main>  
   <script src="../javascript/script.js"></script>
   <footer>
