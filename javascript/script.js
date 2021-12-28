@@ -4,9 +4,9 @@
 		var titulo = $('#titulo').val()
 		var candidato = $('#candidato').val()
 
-		document.getElementById("mostraeleitor").innerHTML = "Eleitor: " + eleitor;
-		document.getElementById("mostratitulo").innerHTML = "Titulo: " + titulo;
-		document.getElementById("mostracandidato").innerHTML = "Candidato: " + candidato;
+		$("#mostraeleitor").html("Eleitor: " + eleitor);
+		$("#mostratitulo").html("Titulo: " + titulo);
+		$("#mostracandidato").html("Candidato: " + candidato);
 	});
 	$('#finalizar').click(function(){
 		
@@ -29,8 +29,7 @@
 			}else{
 				$('#mostrar').attr('class', 'd-flex justify-content-center text-danger')
 			}
-			console.log(data);
-			document.getElementById("mostrar").innerHTML = data.message;
+			$("#mostrar").html(data.message);
 							
 		});
 		$('#close').click()
@@ -62,17 +61,13 @@
 				'busca' : 'aa'
 			}
 		}).success(function(data){
-			
-			console.log(data);
-			document.getElementById('total').innerHTML = data.busca
-			document.getElementById('nomeMaisVotado').innerHTML = data.ultimoMaisVotado['nome']
-			document.getElementById('qtdVotosMaisVotado').innerHTML = data.ultimoMaisVotado['id_candidato']
+			$('#total').html(data.busca)
+			$('#nomeMaisVotado').html(data.ultimoMaisVotado['nome'])
+			$('#qtdVotosMaisVotado').html(data.ultimoMaisVotado['id_candidato'])
 
-			var arr = data.candidatos					 
+			var arr = data.candidatos		
 
-			let text = "";
-
-			let tbody = document.getElementById('tbody')
+			let tbody = $('#tbody').get(0)
 
         	tbody.innerText = ""
 
@@ -94,9 +89,7 @@
 				  
 			}
 
-			document.getElementById('demo').innerHTML = text;
-			 
-			document.getElementById('verificar').innerHTML = "ATUALIZAR"
+			$('#verificar').html('ATUALIZAR');
 			
 		});
 	});  

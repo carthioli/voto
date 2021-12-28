@@ -1,7 +1,5 @@
 <?php
-
     require "../header/headerA.php";
- 
 ?>
     <title>Apuração</title>
 </head>
