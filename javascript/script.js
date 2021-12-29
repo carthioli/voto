@@ -67,27 +67,84 @@ $('#verificar').click(function(){
 		
 		var arr = data.candidatos		
 
-		for (let i = 0; i < 5; i++) {
+
+		var divPai = $('#mostra')
+		
+		for (let i = 0; i < data.candidatos.length; i++) {
 			arr.id = (i + 1);
+			arr.nome = (i + 1);
+			arr.qtd = (i + 1);
+
+			divPai.append("<label>ID:</label>")
+			divPai.append("<p id='idCand'></p>")
+	
+			divPai.append("<label>CANDIDATO:</label>")
+			divPai.append("<p id='nomeCand'></p>")
+	
+			divPai.append("<label>TOTAL VOTO:</label>") 
+			divPai.append("<p id='qtdVoto'></p>")
+
+			$('#idCand').attr('id', 'idCand' + arr.id++)
+			$('#nomeCand').attr('id', 'nomeCand' + arr.nome++)
+			$('#qtdVoto').attr('id', 'qtdVoto' + arr.qtd++)
+		}
+
+		for (let i = 0; i < data.candidatos.length; i++) {
+			arr.id = (i + 1);
+			arr.nome = (i + 1);
+			arr.qtd = (i + 1);
+
 			  id = arr[i]['id']
 			nome = arr[i]['nome']  
 			totalVotos = arr[i]['totalVotos']
 
-			var mostra = $('#mostraResultado')
-
-			var divPai = $('#mostra');
-			
-			
-			/*$('#idCand').html(id)
-			$('#nomeCand').html(nome)
-			$('#qtdVoto').html(totalVotos)*/
-			  
+			$('#idCand' + arr.id++).html(id)
+			$('#nomeCand' + arr.nome++).html(nome)
+			$('#qtdVoto' + arr.qtd++).html(totalVotos)
 		}
+		$('#verificar').attr('class', 'd-none')
 
-		$('#verificar').html('ATUALIZAR');
+		var divBtn = $("#button")
+
+		divBtn.append("<button type='button' id='atualizar' class='btn btn-success text-body'>ATUALIZAR</button>")
+
+
+		$('#atualizar').click(function(){
+			$.ajax({
+				url: 'BuscaApuracao.php',
+				type: 'post',
+				dataType: 'json',
+				data: {
+					'busca' : 'aa'
+				}
+			}).success(function(data){
+				$('#total').html(data.busca)
+				$('#nomeMaisVotado').html(data.ultimoMaisVotado['nome'])
+				$('#qtdVotosMaisVotado').html(data.ultimoMaisVotado['id_candidato'])
+				
+				var arr = data.candidatos
 		
+				for (let i = 0; i < data.candidatos.length; i++) {
+					arr.id = (i + 1);
+					arr.nome = (i + 1);
+					arr.qtd = (i + 1);
+		
+					  id = arr[i]['id']
+					nome = arr[i]['nome']  
+					totalVotos = arr[i]['totalVotos']
+		
+					$('#idCand' + arr.id++).html(id)
+					$('#nomeCand' + arr.nome++).html(nome)
+					$('#qtdVoto' + arr.qtd++).html(totalVotos)
+				}
+				
+			});
+		});  
+
+
 	});
 });  
+
 
 function enviar( id_candidato ){
 	$('#candidato').val(id_candidato)
