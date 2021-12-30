@@ -8,27 +8,13 @@
     <div class="container-fluid bg-light border-bottom mb-5">
       <h1 class="d-flex justify-content-center text-body">APURAÇÃO</h1>
     </div>  
- 
     <div class="grid">
-      <div class="grid-item ml-5 mr-5 border-right g1">
-        <div id="mostra" class="h-100">
-       
-
-
-              <!--<table class="table table-striped table-bordered  w-10">
-                <thead>
-                  <th class="text-center">ID</th>
-                  <th class="text-center">CANDIDATO</th>
-                  <th class="text-center">VOTOS</th>
-                </thead>
-                <tbody id="tbody" class="">
-
-                </tbody>
-              </table>-->
-        
+      <div class="grid-item ml-5 mr-5 g1">
+        <div id="mostraResult">
+          <div id="mostra" class="h-100 ">
+          </div>
         </div>
       </div> 
-
       <div class="grid-item g2 ">
         <div class="container bg-light border-left border-top border-right rounded-top mt-2 col-4 ">
           <h3 class="text-center mt-3 text-body">MAIS VOTADO!</h3>

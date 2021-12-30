@@ -24,7 +24,6 @@
               <h4 class="d-flex justify-content-center text-body text-uppercase mt-4">
                 <?php echo $candidato->id;?>
               </h4>
-
               <div class="btn d-flex justify-content-center">
                 <button type="button" class="btn btn-success text-white m-1" data-toggle="modal" onclick="enviar(<?php echo $candidato->id;?>)" data-target="#form">VOTAR</button>  
                 <div class="modal fade" id="form">
@@ -49,7 +48,6 @@
                   </div>
                 </div>
               </div>
-
                <div class="modal fade form_voto" id="form-voto">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
